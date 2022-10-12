@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1056</width>
-    <height>645</height>
+    <width>1149</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Xy Ly Anh 19TIN_TT</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="path_folder">
@@ -19,7 +19,7 @@
      <rect>
       <x>310</x>
       <y>20</y>
-      <width>701</width>
+      <width>801</width>
       <height>51</height>
      </rect>
     </property>
@@ -27,6 +27,9 @@
      <font>
       <pointsize>16</pointsize>
      </font>
+    </property>
+    <property name="text">
+     <string>D:\USER\Pictures\xy ly anh</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -80,7 +83,7 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string>250</string>
     </property>
     <property name="placeholderText">
      <string>X</string>
@@ -101,7 +104,7 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string>900</string>
     </property>
     <property name="echoMode">
      <enum>QLineEdit::Normal</enum>
@@ -143,7 +146,7 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string>600</string>
     </property>
     <property name="placeholderText">
      <string>100</string>
@@ -167,56 +170,12 @@
      <string>Loại làm mờ:</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QPushButton" name="btn_batdau_vuong">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>300</y>
-      <width>231</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>0</y>
-       <width>201</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QRadioButton" name="radioButton">
-        <property name="text">
-         <string>Vùng vuông</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioButton_2">
-        <property name="text">
-         <string>Vùng tròn</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="btn_batdau">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>540</y>
-      <width>981</width>
+      <x>80</x>
+      <y>350</y>
+      <width>191</width>
       <height>71</height>
      </rect>
     </property>
@@ -226,16 +185,16 @@
      </font>
     </property>
     <property name="text">
-     <string>Bắt đầu</string>
+     <string>Vuông</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>130</y>
-      <width>391</width>
-      <height>311</height>
+      <y>140</y>
+      <width>521</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="font">
@@ -246,16 +205,39 @@
     <property name="title">
      <string>Log Lỗi</string>
     </property>
-    <widget class="QListView" name="listView">
+    <widget class="QPlainTextEdit" name="txt_log">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>40</y>
-       <width>391</width>
+       <width>511</width>
        <height>271</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="btn_batdau_tron">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>350</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Tròn</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
