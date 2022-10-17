@@ -41,7 +41,6 @@ class MainApp(QMainWindow, ui_main):
             import CheAnh
             CuongDo = self.thanh_dieuchinh.value()
             path_Vuong = CheAnh.GetIMGinFloderDEmo(X, Y, R, 1, txt, "img_out", CuongDo, 2)
-            print(path_Vuong)
             path_Tron = CheAnh.GetIMGinFloderDEmo(X, Y, R, 2, txt, "img_out", CuongDo, 2)
             if "lỗi" not in path_Vuong:
                 self.ShowImg_Vuong(path_Vuong)
@@ -55,16 +54,16 @@ class MainApp(QMainWindow, ui_main):
     def ShowImg_Vuong(self, file_path):
         label = self.findChild(QLabel, "labviewVuong")
         pixmap = QPixmap(file_path)
-        pixmap = pixmap.scaled(450, 350)
+        pixmap = pixmap.scaled(550, 450)
         label.setPixmap(pixmap)
-        label.resize(pixmap.width(), pixmap.height())
+
 
     def ShowImg_Tron(self, file_path):
         label = self.findChild(QLabel, "labviewTron")
         pixmap = QPixmap(file_path)
-        pixmap = pixmap.scaled(450, 350)
+        pixmap = pixmap.scaled(550, 450)
         label.setPixmap(pixmap)
-        label.resize(pixmap.width(), pixmap.height())
+
 
     def CuongDo(self):
         CuongDo = self.thanh_dieuchinh.value()
