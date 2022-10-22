@@ -10,10 +10,16 @@ def path():
 
 # LOAD 1: vuong; LOAD 2 tron
 def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
-    image_r = cv2.imread(path_img)
+    # xu ly duong dan
+    import numpy
+    stream = open(path_img, "rb")
+    bytes = bytearray(stream.read())
+    numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
+
+    image_r = cv2.imdecode(numpyarray, cv2.IMREAD_UNCHANGED)
+    print(image_r.shape)
     h_max, w_max, c = image_r.shape
     img_name = "duyvo26_" + os.path.split(path_img)[-1]
-
 
     leftTop = (x, y)
     LeftToRight_TopToBottom = (size, size)
@@ -21,12 +27,11 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
     x, y = leftTop[0], leftTop[1]
     w, h = LeftToRight_TopToBottom[0], LeftToRight_TopToBottom[1]
 
-
-    if x > w_max - R or y > h_max - R or w > w_max - R or h > h_max - R:
+    if x > w_max - R or y > h_max - R or w > w_max or h > h_max:
         # print("Loi kich thuoc anh")
         return False
 
-# 5 - 40
+    # 5 - 40
     # hinh vuong
     if LOAD == 1:
         # print("Vung che vuong")
@@ -77,6 +82,7 @@ def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
                     LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
     return LOG_TXT
 
+
 def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
     SumFile = 0  # sum file
     LOG_TXT = ""
@@ -90,7 +96,7 @@ def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
                 FileIMG = root + "\\" + f
                 try:
                     kq = CheAnh(x, y, r, FileIMG, status, output, CuongDo)
-                    if  kq== False:
+                    if kq == False:
                         return "Co lỗi khi nhập kich thươc ảnh vui lòng thử lại"
                     else:
                         return kq
@@ -98,9 +104,18 @@ def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
                     return False
 
 
+def TaoThuMuc(fileName):
+    try:
+        os.mkdir(fileName, mode=0o777)
+    except:
+        return True
 
 
 def InputData(x, y, r, status, input_path, CuongDo):
-    yield GetIMGinFloder(x, y, r, status, input_path, str(path()) + "\\img_out", CuongDo)
-    yield str(path()) + "\\img_out"
+    from datetime import datetime
+    now = datetime.now()
+    path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y %H-%M-%S"))
+    TaoThuMuc(path_)
 
+    yield GetIMGinFloder(x, y, r, status, input_path, path_, CuongDo)
+    yield path_
