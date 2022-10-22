@@ -1,1 +1,1 @@
-pyinstaller --onefile main.py
+pyinstaller --name="Xử lý ảnh - 19TinTT Duyvo-VinhKhang" --windowed --onefile main.py

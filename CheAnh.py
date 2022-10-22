@@ -8,33 +8,23 @@ def path():
     return pathlib.Path().resolve()
 
 
-# LOAD 1: vuong; LOAD 2 tron
 def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
-    # xu ly duong dan
     import numpy
     stream = open(path_img, "rb")
     bytes = bytearray(stream.read())
     numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
-
     image_r = cv2.imdecode(numpyarray, cv2.IMREAD_UNCHANGED)
-    print(image_r.shape)
     h_max, w_max, c = image_r.shape
     img_name = "duyvo26_" + os.path.split(path_img)[-1]
-
     leftTop = (x, y)
     LeftToRight_TopToBottom = (size, size)
     R = LeftToRight_TopToBottom[0]
     x, y = leftTop[0], leftTop[1]
     w, h = LeftToRight_TopToBottom[0], LeftToRight_TopToBottom[1]
-
     if x > w_max - R or y > h_max - R or w > w_max or h > h_max:
-        # print("Loi kich thuoc anh")
         return False
 
-    # 5 - 40
-    # hinh vuong
     if LOAD == 1:
-        # print("Vung che vuong")
         image = image_r
         ROI = image[y:y + h, x:x + w]
         size_IMG = (ROI.shape[1], ROI.shape[0])
@@ -44,7 +34,7 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
         image[y:y + h, x:x + w] = blur
         cv2.imwrite(output + "\\" + "(VUONG)_" + img_name, image)
         return output + "\\" + "(VUONG)_" + img_name
-    # hinh tron
+
     if LOAD == 2:
         ROI = image_r.copy()
         maskShape = (image_r.shape[0], image_r.shape[1], 1)
@@ -64,20 +54,18 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
 
 
 def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
-    SumFile = 0  # sum file
+    SumFile = 0
     LOG_TXT = ""
-    for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
+    for (root, dirs, file) in os.walk(folder):
         for f in file:
             if ".jpg" in f or ".png" in f or ".webp" in f:
                 SumFile += 1
                 FileIMG = root + "\\" + f
                 try:
                     if CheAnh(x, y, r, FileIMG, status, output, CuongDo) == False:
-                        # print("ANH :\t", f, "\t Co loi bo qua")
                         LOG_TXT += "----------------------\n"
                         LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
                 except Exception as mess:
-                    # print("ANH :\t", f, "\t Co loi bo qua")
                     LOG_TXT += "----------------------\n"
                     LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
     return LOG_TXT
@@ -85,7 +73,6 @@ def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
 
 def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
     SumFile = 0  # sum file
-    LOG_TXT = ""
     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
         if coutIMG is None:
             if SumFile > coutIMG:
@@ -97,7 +84,7 @@ def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
                 try:
                     kq = CheAnh(x, y, r, FileIMG, status, output, CuongDo)
                     if kq == False:
-                        return "Co lỗi khi nhập kich thươc ảnh vui lòng thử lại"
+                        return "Có lỗi khi nhập kich thươc ảnh vui lòng thử lại"
                     else:
                         return kq
                 except Exception as mess:
@@ -116,6 +103,5 @@ def InputData(x, y, r, status, input_path, CuongDo):
     now = datetime.now()
     path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y %H-%M-%S"))
     TaoThuMuc(path_)
-
     yield GetIMGinFloder(x, y, r, status, input_path, path_, CuongDo)
     yield path_

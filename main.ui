@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Xy Ly Anh 19TIN_TT</string>
+   <string>Xử lý ảnh - 19TinTT Duyvo-VinhKhang</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="path_folder">
