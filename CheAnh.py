@@ -72,6 +72,8 @@ def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
 
 
 def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
+    if len(folder) < 2:
+        return False
     SumFile = 0  # sum file
     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
         if coutIMG is None:
@@ -93,15 +95,20 @@ def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
 
 def TaoThuMuc(fileName):
     try:
-        os.mkdir(fileName, mode=0o777)
+        os.mkdir(fileName)
     except:
         return True
 
 
-def InputData(x, y, r, status, input_path, CuongDo):
+def InputData(x, y, r, status, input_path, output_path, CuongDo):
+    if len(input_path) < 2:
+        return False
     from datetime import datetime
     now = datetime.now()
-    path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y %H-%M-%S"))
+    if output_path != "" and len(output_path) > 3:
+        path_ = output_path
+    else:
+        path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y %H-%M-%S"))
     TaoThuMuc(path_)
     yield GetIMGinFloder(x, y, r, status, input_path, path_, CuongDo)
     yield path_

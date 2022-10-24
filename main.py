@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 from PyQt5.QtGui import QPixmap
 import sys
+from PyQt5 import QtGui
+
 import CheAnh
 
 ui_main, _ = loadUiType('main.ui')
@@ -10,12 +12,30 @@ point_XY = []
 _LinkIMG_ = [0]
 SizeMax = []
 SIzelabel = []
+folderOut = [0]
+folderOut[0] = ""
+
+class ScrollMessageBox(QMessageBox):
+    def __init__(self, *args, **kwargs):
+        QMessageBox.__init__(self, *args, **kwargs)
+        chldn = self.children()
+        scrll = QScrollArea(self)
+        scrll.setWidgetResizable(True)
+        grd = self.findChild(QGridLayout)
+        lbl = QLabel(chldn[1].text(), self)
+        lbl.setWordWrap(True)
+        scrll.setWidget(lbl)
+        scrll.setMinimumSize(600, 350)
+        grd.addWidget(scrll, 0, 1)
+        chldn[1].setText('')
+        self.exec_()
 
 
 class MainApp(QMainWindow, ui_main):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.setWindowIcon(QtGui.QIcon('app.ico'))
         self.btn_batdau_vuong.clicked.connect(self.ThucThi_vuong)
         self.btn_batdau_tron.clicked.connect(self.ThucThi_tron)
         self.thanh_dieuchinh.valueChanged.connect(self.CuongDo)
@@ -28,6 +48,10 @@ class MainApp(QMainWindow, ui_main):
         self.Slider_Y.valueChanged.connect(self.DieuCHinhXY)
         self.Slider_R.valueChanged.connect(self.DieuCHinhXY)
         self.path_folder.textChanged.connect(self.DemoIMG)
+        self.path_folder_out.textChanged.connect(self.SaveOutFolder)
+
+    def SaveOutFolder(self):
+        folderOut[0] = str(self.path_folder_out.text())
 
     def DieuCHinhXY(self):
         CuongDo_X = self.Slider_X.value()
@@ -55,14 +79,20 @@ class MainApp(QMainWindow, ui_main):
                         self.ShowImg_Vuong(path_Vuong)
                         self.ShowImg_Tron(path_Tron)
                     else:
-                        self.txt_log.clear()
-                        self.txt_log.insertPlainText(path_Tron + "\n")
+                        print("LOI")
+                        # self.txt_log.clear()
+                        # QMessageBox.information(self, "Có lỗi", path_Tron)
+                        # self.txt_log.insertPlainText(path_Tron + "\n")
                 except:
-                    self.txt_log.clear()
-                    self.txt_log.insertPlainText("Có lỗi vui lòng thử lại" + "\n")
+                    print("LOI")
+                    # QMessageBox.information(self, "Có lỗi", "Vui lòng thử lại")
+                    # self.txt_log.clear()
+                    # self.txt_log.insertPlainText("Có lỗi vui lòng thử lại" + "\n")
         except:
-            self.txt_log.clear()
-            self.txt_log.insertPlainText("Có lỗi vui lòng thử lại" + "\n")
+            print("LOI")
+            # QMessageBox.information(self, "Có lỗi", "Vui lòng thử lại")
+            # self.txt_log.clear()
+            # self.txt_log.insertPlainText("Có lỗi vui lòng thử lại" + "\n")
 
     def ShowImg_Vuong(self, file_path):
         label = self.findChild(QLabel, "labviewVuong")
@@ -84,7 +114,7 @@ class MainApp(QMainWindow, ui_main):
         x = event.pos().x()
         y = event.pos().y()
         label = self.findChild(QLabel, "labviewVuong")
-        size_W, size_H = 481, 389
+        size_W, size_H = 481, 519
         import cv2
         SizeH_img, SizeW_img, h = cv2.imread(_LinkIMG_[0]).shape
         ptW = int(((SizeW_img - size_W) / size_W) * 100)
@@ -117,35 +147,53 @@ class MainApp(QMainWindow, ui_main):
 
     def ThucThi_vuong(self):
         path_Folder = str(self.path_folder.text())
-        X = int(self.point_x.text())
-        Y = int(self.point_y.text())
-        R = int(self.size_che.text())
-        txt = str(path_Folder)
-        import CheAnh
-        CuongDo = self.thanh_dieuchinh.value()
-        Log = CheAnh.InputData(X, Y, R, 1, txt, CuongDo)
-        Log = list(Log)
-        self.txt_log.insertPlainText(Log[0])
-        QMessageBox.information(self, "Thông báo", "Hoàn thành che anh theo hinh vuông")
-        os.startfile(Log[1])
+        if len(path_Folder) < 2:
+            QMessageBox.information(self, "Thông báo", "Vui lòng điện thư mục cần xử lý")
+            return False
+        else:
+            QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
+            X = int(self.point_x.text())
+            Y = int(self.point_y.text())
+            R = int(self.size_che.text())
+            txt = str(path_Folder)
+            import CheAnh
+            CuongDo = self.thanh_dieuchinh.value()
+            Log = CheAnh.InputData(X, Y, R, 1, txt, folderOut[0], CuongDo)
+            Log = list(Log)
+            # self.txt_log.insertPlainText(Log[0])
+            QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình vuông")
+            ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
+            os.startfile(Log[1])
+
 
     def ThucThi_tron(self):
         path_Folder = str(self.path_folder.text())
-        X = int(self.point_x.text())
-        Y = int(self.point_y.text())
-        R = int(self.size_che.text())
-        txt = str(path_Folder)
-        import CheAnh
-        CuongDo = self.thanh_dieuchinh.value()
-        Log = CheAnh.InputData(X, Y, R, 2, txt, CuongDo)
-        Log = list(Log)
-        self.txt_log.insertPlainText(Log[0])
-        QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình tròn")
-        os.startfile(Log[1])
+        if len(path_Folder) < 2:
+            QMessageBox.information(self, "Thông báo", "Vui lòng điện thư mục cần xử lý")
+            return False
+        else:
+            QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
+            X = int(self.point_x.text())
+            Y = int(self.point_y.text())
+            R = int(self.size_che.text())
+            txt = str(path_Folder)
+            import CheAnh
+            CuongDo = self.thanh_dieuchinh.value()
+            Log = CheAnh.InputData(X, Y, R, 2, txt, folderOut[0], CuongDo)
+            Log = list(Log)
+            # self.txt_log.insertPlainText(Log[0])
+            QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình tròn")
+            ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
+            os.startfile(Log[1])
+
 
 
 if __name__ == "__main__":
     CheAnh.TaoThuMuc('img_out')
+    try:
+        os.remove('img_out_demo')
+    except Exception as ex:
+        print(ex)
     CheAnh.TaoThuMuc('img_out_demo')
     app = QApplication(sys.argv)
     window = MainApp()

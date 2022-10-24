@@ -1,1 +1,1 @@
-pyinstaller --name="Xử lý ảnh - 19TinTT Duyvo-VinhKhang" --windowed --onefile main.py
+pyinstaller --name="Xu Ly Anh - 19TinTT Duyvo-VinhKhang" --windowed --icon=app.ico --onefile main.py
