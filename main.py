@@ -1,8 +1,9 @@
 import os
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QMovie
 import sys
+from PyQt5.QtCore import Qt, QTime
 from PyQt5 import QtGui
 
 import CheAnh
@@ -30,12 +31,30 @@ class ScrollMessageBox(QMessageBox):
         chldn[1].setText('')
         self.exec_()
 
+class LoadData(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setFixedSize(400, 250)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.CustomizeWindowHint)
+        self.laybel_load =  QLabel(self)
+        self.movie = QMovie("load.gif")
+        self.laybel_load.setMovie(self.movie)
+    def batDauLoad(self):
+        self.movie.start()
+        self.show()
+
+    def DungLoad(self):
+        self.movie.start()
+        self.close()
 
 class MainApp(QMainWindow, ui_main):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowIcon(QtGui.QIcon('app.ico'))
+        #
+
+        #
         self.btn_batdau_vuong.clicked.connect(self.ThucThi_vuong)
         self.btn_batdau_tron.clicked.connect(self.ThucThi_tron)
         self.thanh_dieuchinh.valueChanged.connect(self.CuongDo)
@@ -50,6 +69,40 @@ class MainApp(QMainWindow, ui_main):
         self.path_folder.textChanged.connect(self.DemoIMG)
         self.path_folder_out.textChanged.connect(self.SaveOutFolder)
 
+        # click in
+        self.btn_in.clicked.connect(self.SelectIn)
+        self.btn_out.clicked.connect(self.SelectOut)
+
+
+
+        # self.show()
+
+
+    def BatDauLoad(self):
+        self.setFixedSize(0, 0)
+        self.hide()
+        self.LoadData = LoadData()
+        self.LoadData.batDauLoad()
+
+    def DungLoad(self):
+        self.setFixedSize(1141, 916)
+        self.show()
+        self.LoadData = LoadData()
+        self.LoadData.DungLoad()
+
+    def getDirectory(self):
+        response = QFileDialog.getExistingDirectory(
+            self,
+            caption='Chọn thư mục'
+        )
+        return response
+
+    def SelectIn(self):
+        IN_ = self.getDirectory()
+        self.path_folder.setText(str(IN_))
+    def SelectOut(self):
+        OUT_ = self.getDirectory()
+        self.path_folder_out.setText(str(OUT_))
     def SaveOutFolder(self):
         folderOut[0] = str(self.path_folder_out.text())
 
@@ -146,12 +199,13 @@ class MainApp(QMainWindow, ui_main):
         self.label.setText(txt + "%")
 
     def ThucThi_vuong(self):
+        self.BatDauLoad()
         path_Folder = str(self.path_folder.text())
         if len(path_Folder) < 2:
             QMessageBox.information(self, "Thông báo", "Vui lòng điện thư mục cần xử lý")
             return False
         else:
-            QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
+            # QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
@@ -161,6 +215,7 @@ class MainApp(QMainWindow, ui_main):
             Log = CheAnh.InputData(X, Y, R, 1, txt, folderOut[0], CuongDo)
             Log = list(Log)
             # self.txt_log.insertPlainText(Log[0])
+            self.DungLoad()
             QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình vuông")
             ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
             os.startfile(Log[1])
