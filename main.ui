@@ -29,7 +29,7 @@
      </font>
     </property>
     <property name="text">
-     <string>10</string>
+     <string>0</string>
     </property>
     <property name="placeholderText">
      <string>100</string>
@@ -316,7 +316,7 @@
         </font>
        </property>
        <property name="text">
-        <string>10</string>
+        <string>0</string>
        </property>
        <property name="placeholderText">
         <string>X</string>
@@ -331,7 +331,7 @@
         </font>
        </property>
        <property name="text">
-        <string>10</string>
+        <string>0</string>
        </property>
        <property name="echoMode">
         <enum>QLineEdit::Normal</enum>
@@ -444,7 +444,7 @@
         <widget class="QPushButton" name="btn_in">
          <property name="font">
           <font>
-           <pointsize>14</pointsize>
+           <pointsize>16</pointsize>
           </font>
          </property>
          <property name="text">
@@ -456,7 +456,7 @@
         <widget class="QPushButton" name="btn_out">
          <property name="font">
           <font>
-           <pointsize>14</pointsize>
+           <pointsize>16</pointsize>
           </font>
          </property>
          <property name="text">
