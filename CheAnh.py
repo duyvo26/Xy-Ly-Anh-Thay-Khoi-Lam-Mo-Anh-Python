@@ -3,9 +3,19 @@ import pathlib
 import cv2
 import numpy as np
 
+BanQuyen = [0]
+BanQuyen[0] = "BQ-duyvo26_"
 
 def path():
     return pathlib.Path().resolve()
+
+def GetXyFace(path_img):
+    face_detector = cv2.CascadeClassifier('DataSet\\haarcascade_frontalface_default.xml')
+    print(path_img)
+    img = cv2.imread(path_img)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_detector.detectMultiScale(gray, 1.3, 5)
+    return faces
 
 
 def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
@@ -15,7 +25,10 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
     numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
     image_r = cv2.imdecode(numpyarray, cv2.IMREAD_UNCHANGED)
     h_max, w_max, c = image_r.shape
-    img_name = "duyvo26_" + os.path.split(path_img)[-1]
+    img_name = os.path.split(path_img)[-1]
+    if BanQuyen[0] not in img_name:
+        img_name = BanQuyen[0] + img_name
+
     leftTop = (x, y)
     LeftToRight_TopToBottom = (size, size)
     R = LeftToRight_TopToBottom[0]
@@ -32,8 +45,8 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
         temp = cv2.resize(ROI, (CuongDo, CuongDo), interpolation=cv2.INTER_NEAREST)
         blur = cv2.resize(temp, size_IMG, interpolation=cv2.INTER_NEAREST)
         image[y:y + h, x:x + w] = blur
-        cv2.imwrite(output + "\\" + "(VUONG)_" + img_name, image)
-        return output + "\\" + "(VUONG)_" + img_name
+        cv2.imwrite(output + "\\" + img_name, image)
+        return output + "\\" + img_name
 
     if LOAD == 2:
         ROI = image_r.copy()
@@ -49,8 +62,8 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
         img1_bg = cv2.bitwise_and(image_r, image_r, mask=mask_inv)
         img2_fg = cv2.bitwise_and(tempImg, tempImg, mask=mask)
         dst = cv2.add(img1_bg, img2_fg)
-        cv2.imwrite(output + "\\" + "(TRON)_" + img_name, dst)
-        return output + "\\" + "(TRON)_" + img_name
+        cv2.imwrite(output + "\\" + img_name, dst)
+        return output + "\\" + img_name
 
 
 def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
@@ -62,9 +75,17 @@ def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
                 SumFile += 1
                 FileIMG = root + "\\" + f
                 try:
-                    if CheAnh(x, y, r, FileIMG, status, output, CuongDo) == False:
-                        LOG_TXT += "----------------------\n"
-                        LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
+                    if status == 3:
+                        for face in GetXyFace(FileIMG):
+                            x, y, r, w = face
+                            FileIMG = CheAnh(x, y, r, FileIMG, 1, output, CuongDo)
+                            if FileIMG == False:
+                                LOG_TXT += "----------------------\n"
+                                LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
+                    else:
+                        if CheAnh(x, y, r, FileIMG, status, output, CuongDo) == False:
+                            LOG_TXT += "----------------------\n"
+                            LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
                 except Exception as mess:
                     LOG_TXT += "----------------------\n"
                     LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
@@ -108,7 +129,7 @@ def InputData(x, y, r, status, input_path, output_path, CuongDo):
     if output_path != "" and len(output_path) > 3:
         path_ = output_path
     else:
-        path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y %H-%M-%S"))
+        path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
     TaoThuMuc(path_)
     yield GetIMGinFloder(x, y, r, status, input_path, path_, CuongDo)
     yield path_

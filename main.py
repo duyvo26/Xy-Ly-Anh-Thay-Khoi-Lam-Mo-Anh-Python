@@ -38,6 +38,8 @@ class MainApp(QMainWindow, ui_main):
         self.setWindowIcon(QtGui.QIcon('app.ico'))
         self.btn_batdau_vuong.clicked.connect(self.ThucThi_vuong)
         self.btn_batdau_tron.clicked.connect(self.ThucThi_tron)
+        self.btn_batdau_face.clicked.connect(self.ThucThi_face)
+
         self.thanh_dieuchinh.valueChanged.connect(self.CuongDo)
         self.SetViewCuongDo(5)
         self.point_x.textChanged.connect(self.DemoIMG)
@@ -180,8 +182,34 @@ class MainApp(QMainWindow, ui_main):
             Log = list(Log)
             self.DungLoad()
             QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình vuông")
-            ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
+            if len(Log[0]) > 2:
+                ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
             os.startfile(Log[1])
+
+
+    def ThucThi_face(self):
+        path_Folder = str(self.path_folder.text())
+        if len(path_Folder) < 2:
+            QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
+            return False
+        else:
+            self.BatDauLoad()
+            # QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
+            X = int(self.point_x.text())
+            Y = int(self.point_y.text())
+            R = int(self.size_che.text())
+            txt = str(path_Folder)
+            import CheAnh
+            CuongDo = self.thanh_dieuchinh.value()
+            Log = CheAnh.InputData(X, Y, R, 3, txt, folderOut[0], CuongDo)
+            Log = list(Log)
+            # self.txt_log.insertPlainText(Log[0])
+            self.DungLoad()
+            QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo khuôn mặt")
+            if len(Log[0]) > 2:
+                ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
+            os.startfile(Log[1])
+
 
     def ThucThi_tron(self):
         X = int(self.point_x.text())
@@ -193,7 +221,7 @@ class MainApp(QMainWindow, ui_main):
             return False
         else:
             self.BatDauLoad()
-            QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
+            # QMessageBox.information(self, "Thông báo", "Đang xử lý vui lòng đợi trong giấy lát")
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
@@ -205,7 +233,8 @@ class MainApp(QMainWindow, ui_main):
             # self.txt_log.insertPlainText(Log[0])
             self.DungLoad()
             QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình tròn")
-            ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
+            if len(Log[0]) > 2:
+                ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
             os.startfile(Log[1])
 
 
