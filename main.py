@@ -56,7 +56,7 @@ class MainApp(QMainWindow, ui_main):
 
     def BatDauLoad(self):
         self.setFixedSize(1141, 10)
-        QMessageBox.information(self, "Xử lý", "Đang xử lý ảnh vui lòng đợi")
+        # QMessageBox.information(self, "Xử lý", "Đang xử lý ảnh vui lòng đợi")
 
     def DungLoad(self):
         self.setFixedSize(1141, 916)

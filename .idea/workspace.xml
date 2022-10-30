@@ -5,33 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24603b6a-706d-4964-a9c4-89b59c42669d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_eye.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_eye_tree_eyeglasses.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_alt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_alt2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_alt_tree.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_fullbody.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_lefteye_2splits.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_lowerbody.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_profileface.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_righteye_2splits.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_smile.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataSet/haarcascade_upperbody.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CheAnh.py" beforeDir="false" afterPath="$PROJECT_DIR$/CheAnh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/Analysis-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/EXE-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PKG-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PYZ-00.pyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PYZ-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/Xu Ly Anh - 19TinTT Duyvo-VinhKhang.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/Xu Ly Anh - 19TinTT Duyvo-VinhKhang.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/base_library.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/warn-Xu Ly Anh - 19TinTT Duyvo-VinhKhang.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/warn-Xu Ly Anh - 19TinTT Duyvo-VinhKhang.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/Xu Ly Anh - 19TinTT Duyvo-VinhKhang.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/Xu Ly Anh - 19TinTT Duyvo-VinhKhang.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_upperbody.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DataSet/haarcascade_upperbody.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/main.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +37,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GIT/Python/Xy Ly Anh/DataSet&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GIT/Python/Xy Ly Anh&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
@@ -183,9 +159,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.CheAnh (1)" />
         <item itemvalue="Python.mergevec" />
         <item itemvalue="Python.Train" />
-        <item itemvalue="Python.CheAnh (1)" />
         <item itemvalue="Python.CheAnh_AI" />
       </list>
     </recent_temporary>
