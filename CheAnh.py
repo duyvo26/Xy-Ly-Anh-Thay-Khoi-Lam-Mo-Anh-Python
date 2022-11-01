@@ -3,36 +3,32 @@ import pathlib
 import cv2
 import numpy as np
 
-BanQuyen = [0]
-BanQuyen[0] = "BQ-duyvo26_"
 
-
+BanQuyen = "BQ-duyvo26_"
 
 def path():
     return pathlib.Path().resolve()
 
-def GetXyFace(path_img):
+def GetXyFace(IMG):
     face_detector = cv2.CascadeClassifier('DataSet\\haarcascade_frontalface_default.xml')
-    print(path_img)
-    img = cv2.imread(path_img)
+    img = cv2.imread(IMG)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray)
+    print(faces)
     return faces
 
 
-def CheAnh(x, y, size, path_img, LOAD, output, CuongDo, NameImgOUT = ""):
-    import numpy
-    stream = open(path_img, "rb")
-    bytes = bytearray(stream.read())
-    numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
-    image_r = cv2.imdecode(numpyarray, cv2.IMREAD_UNCHANGED)
+def CheAnh(x, y, size, path_img, LOAD, CuongDo, LOOP = False):
+    global BanQuyen
+    if LOOP == False:
+        import numpy
+        stream = open(path_img, "rb")
+        bytes = bytearray(stream.read())
+        numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
+        image_r = cv2.imdecode(numpyarray, cv2.IMREAD_UNCHANGED)
+    else:
+        image_r = path_img
     h_max, w_max, c = image_r.shape
-    img_name = os.path.split(path_img)[-1]
-    if BanQuyen[0] not in img_name:
-        img_name = BanQuyen[0] + img_name
-    if NameImgOUT != "":
-        img_name = os.path.split(NameImgOUT)[-1]
-
 
     leftTop = (x, y)
     LeftToRight_TopToBottom = (size, size)
@@ -41,7 +37,6 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo, NameImgOUT = ""):
     w, h = LeftToRight_TopToBottom[0], LeftToRight_TopToBottom[1]
     if x > w_max - R or y > h_max - R or w > w_max or h > h_max:
         return False
-
     if LOAD == 1:
         image = image_r
         ROI = image[y:y + h, x:x + w]
@@ -50,13 +45,7 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo, NameImgOUT = ""):
         temp = cv2.resize(ROI, (CuongDo, CuongDo), interpolation=cv2.INTER_NEAREST)
         blur = cv2.resize(temp, size_IMG, interpolation=cv2.INTER_NEAREST)
         image[y:y + h, x:x + w] = blur
-        if "_V_" not in img_name:
-            cv2.imwrite(output + "\\_V_" + img_name, image)
-            return output + "\\_V_" + img_name
-        else:
-            cv2.imwrite(output + "\\" + img_name, image)
-            return output + "\\" + img_name
-
+        return image
 
     if LOAD == 2:
         ROI = image_r.copy()
@@ -72,98 +61,40 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo, NameImgOUT = ""):
         img1_bg = cv2.bitwise_and(image_r, image_r, mask=mask_inv)
         img2_fg = cv2.bitwise_and(tempImg, tempImg, mask=mask)
         dst = cv2.add(img1_bg, img2_fg)
-        if "_T_" not in img_name:
-            cv2.imwrite(output + "\\_T_" + img_name, dst)
-            return output + "\\_T_" + img_name
-        else:
-            cv2.imwrite(output + "\\" + img_name, dst)
-            return output + "\\" + img_name
-
-    if LOAD == 3:
-        image = image_r
-        ROI = image[y:y + h, x:x + w]
-        size_IMG = (ROI.shape[1], ROI.shape[0])
-        CuongDo = int((((h_max - (h_max * CuongDo) / 100) / 10) + 10) / 4)
-        temp = cv2.resize(ROI, (CuongDo, CuongDo), interpolation=cv2.INTER_NEAREST)
-        blur = cv2.resize(temp, size_IMG, interpolation=cv2.INTER_NEAREST)
-        image[y:y + h, x:x + w] = blur
-        if "_F_" not in img_name:
-            cv2.imwrite(output + "\\_F_" + img_name, image)
-            return output + "\\_F_" + img_name
-        else:
-            cv2.imwrite(output + "\\" + img_name, image)
-            return output + "\\" + img_name
+        return dst
 
 
-def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
-    SumFile = 0
-    LOG_TXT = ""
-    for (root, dirs, file) in os.walk(folder):
-        for f in file:
-            if ".jpg" in f or ".png" in f or ".webp" in f:
-                SumFile += 1
-                FileIMG = root + "\\" + f
-                try:
-                    if status == 3:
-                        for face in GetXyFace(FileIMG):
-                            x, y, r, w = face
-                            FileIMG = CheAnh(x, y, r, FileIMG, 1, output, CuongDo)
-                            if FileIMG == False:
-                                LOG_TXT += "----------------------\n"
-                                LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
-                    else:
-                        if CheAnh(x, y, r, FileIMG, status, output, CuongDo) == False:
-                            LOG_TXT += "----------------------\n"
-                            LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
-                except Exception as mess:
-                    LOG_TXT += "----------------------\n"
-                    LOG_TXT += str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n"
-    return LOG_TXT
-
-
-def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
-    if len(folder) < 2:
-        return False
-    SumFile = 0  # sum file
+def GetIMGinFloderDEmo(folder, point = 0):
+    point_arr = []
     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
-        if coutIMG is None:
-            if SumFile > coutIMG:
-                break
         for f in file:
             if ".jpg" in f or ".png" in f or ".webp" in f:
-                SumFile += 1
-                FileIMG = root + "\\" + f
-                try:
-                    if status == 3:
-                        for face in GetXyFace(FileIMG):
-                            x_, y_, r_, w = face
-                            kq = CheAnh(x_, y_, r_, FileIMG, 3, output, CuongDo)
-                        kq = CheAnh(x, y, r, kq, 3, output, CuongDo)
-                    else:
-                        kq = CheAnh(x, y, r, FileIMG, status, output, CuongDo)
-                    if kq == False:
-                        return "Có lỗi khi nhập kich thươc ảnh vui lòng thử lại"
-                    return kq
-                except Exception as mess:
-                    return False
+                point_arr.append(str(root + "\\" + f))
 
+    return point_arr[point]
+
+def GetIMGinFloderOut(folder):
+    point_arr = []
+    for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
+        for f in file:
+            if ".jpg" in f or ".png" in f or ".webp" in f:
+                point_arr.append(str(root + "\\" + f))
+    print(point_arr)
+    return point_arr
+
+
+def path():
+    return pathlib.Path().resolve()
 
 def TaoThuMuc(fileName):
     try:
-        os.mkdir(fileName)
+        from pathlib import Path
+        Path(fileName).mkdir(parents=True, exist_ok=True)
     except:
         return True
 
 
-def InputData(x, y, r, status, input_path, output_path, CuongDo):
-    if len(input_path) < 2:
-        return False
-    from datetime import datetime
-    now = datetime.now()
-    if output_path != "" and len(output_path) > 3:
-        path_ = output_path
-    else:
-        path_ = str(path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
-    TaoThuMuc(path_)
-    yield GetIMGinFloder(x, y, r, status, input_path, path_, CuongDo)
-    yield path_
+
+# cv2.imshow("NameIMG", CheAnh(10, 20, 40, "D:\\USER\\Pictures\\img facebook\\13cadfa.jpg", 1, 90))
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
