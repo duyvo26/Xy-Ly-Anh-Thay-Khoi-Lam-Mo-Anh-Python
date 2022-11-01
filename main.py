@@ -2,9 +2,10 @@ import os
 import sys
 
 from PyQt5 import QtGui
-from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
+from PyQt5 import QtCore
 
 import CheAnh
 
@@ -37,25 +38,54 @@ class MainApp(QMainWindow, ui_main):
         self.setWindowIcon(QtGui.QIcon('app.ico'))
         self.path_folder.textChanged.connect(self.ReloadData)
         self.btn_batdau_vuong.clicked.connect(self.ThucThi_vuong)
+        self.btn_batdau_vuong.clicked.connect(self.ReloadData)
+        self.btn_batdau_vuong.setIcon(QIcon("icon\\icons8-surface-40.png"))
+        self.btn_batdau_vuong.setIconSize(QtCore.QSize(35, 35))
+
         self.btn_batdau_tron.clicked.connect(self.ThucThi_tron)
+        self.btn_batdau_tron.clicked.connect(self.ReloadData)
+        self.btn_batdau_tron.setIcon(QIcon("icon\\icons8-circled-thin-48.png"))
+        self.btn_batdau_tron.setIconSize(QtCore.QSize(35, 35))
+
         self.btn_batdau_face.clicked.connect(self.ThucThi_face)
+        self.btn_batdau_face.clicked.connect(self.ReloadData)
+        self.btn_batdau_face.setIcon(QIcon("icon\\icons8-npc-face-48.png"))
+        self.btn_batdau_face.setIconSize(QtCore.QSize(35, 35))
+
         self.thanh_dieuchinh.valueChanged.connect(self.CuongDo)
         self.SetViewCuongDo(5)
         self.point_x.textChanged.connect(self.DemoIMG)
         self.point_y.textChanged.connect(self.DemoIMG)
         self.size_che.textChanged.connect(self.DemoIMG)
         self.thanh_dieuchinh.valueChanged.connect(self.DemoIMG)
-        self.Slider_X.valueChanged.connect(self.DieuCHinhXY)
-        self.Slider_Y.valueChanged.connect(self.DieuCHinhXY)
-        self.Slider_R.valueChanged.connect(self.DieuCHinhXY)
         self.path_folder.textChanged.connect(self.DemoIMG)
         self.path_folder_out.textChanged.connect(self.SaveOutFolder)
         self.btn_in.clicked.connect(self.SelectIn)
+        self.btn_in.setIcon(QIcon("icon\\icons8-documents-folder-48.png"))
+        self.btn_in.setIconSize(QtCore.QSize(45, 45))
+        self.btn_in.setToolTip("Chọn thư mục")
         self.btn_out.clicked.connect(self.SelectOut)
+        self.btn_out.setIcon(QIcon("icon\\icons8-documents-folder-48.png"))
+        self.btn_out.setIconSize(QtCore.QSize(45, 45))
+        self.btn_out.setToolTip("Chọn thư mục xuất ảnh")
         self.btnSave.clicked.connect(self.SetSaveIMG)
+        self.btnSave.setIcon(QIcon("icon\\icons8-save-as-48.png"))
+        self.btnSave.setIconSize(QtCore.QSize(45, 45))
+        self.btnSave.setToolTip("Lưu vị trí")
         self.btnDelete.clicked.connect(self.SetDeleIMG)
+        self.btnDelete.setIcon(QIcon("icon\\icons8-remove-64.png"))
+        self.btnDelete.setIconSize(QtCore.QSize(45, 45))
+        self.btnDelete.setToolTip("Xoá vị trí")
+
         self.btnNext.clicked.connect(self.nextIMG)
+        self.btnNext.setIcon(QIcon("icon\\icons8-next-page-50.png"))
+        self.btnNext.setIconSize(QtCore.QSize(45, 45))
+        self.btnNext.setToolTip("Ảnh tiếp theo")
+
         self.btnBack.clicked.connect(self.backIMG)
+        self.btnBack.setIcon(QIcon("icon\\icons8-left-50.png"))
+        self.btnBack.setIconSize(QtCore.QSize(45, 45))
+        self.btnBack.setToolTip("Ảnh trước")
 
     def nextIMG(self):
         global countIMG, MaxIMG
@@ -76,19 +106,23 @@ class MainApp(QMainWindow, ui_main):
         self.point_x.setText(str(0))
 
     def ReloadData(self):
+        self.point_x.setText(str(1))
         self.point_x.setText(str(0))
-        self.Slider_X.setValue(int(0))
+        # self.Slider_X.setValue(int(0))
         self.point_y.setText(str(0))
         self.size_che.setText(str(0))
 
     def SetSaveIMG(self):
         global _LinkIMG_, linkcache, ViTriXY, LinkSaveIMG, XYTam
-        ViTriXY.append(XYTam[len(XYTam) - 1])
-        QMessageBox.information(self, "Thông báo", "Lưu thành công vị trí thứ " + str(len(ViTriXY)))
+        if len(XYTam) > 0:
+            ViTriXY.append(XYTam[len(XYTam) - 1])
+            QMessageBox.information(self, "Thông báo", "Lưu thành công vị trí thứ " + str(len(ViTriXY)))
 
     def SetDeleIMG(self):
-        ViTriXY.pop(len(ViTriXY) - 1)
-        QMessageBox.information(self, "Thông báo", "Đã xoá vị trí gần nhất")
+        global ViTriXY
+        if len(ViTriXY) > 0:
+            ViTriXY.pop(len(ViTriXY) - 1)
+            QMessageBox.information(self, "Thông báo", "Đã xoá vị trí gần nhất")
 
     def BatDauLoad(self):
         self.setFixedSize(1141, 10)
@@ -118,14 +152,14 @@ class MainApp(QMainWindow, ui_main):
 
         folderOut = str(self.path_folder_out.text())
 
-    def DieuCHinhXY(self):
-        CuongDo_X = self.Slider_X.value()
-        CuongDo_Y = self.Slider_Y.value()
-        CuongDo_R = self.Slider_R.value()
-        self.point_x.setText(str(CuongDo_X))
-        self.Slider_X.setValue(int(CuongDo_X))
-        self.point_y.setText(str(CuongDo_Y))
-        self.size_che.setText(str(CuongDo_R))
+    # def DieuCHinhXY(self):
+    #     CuongDo_X = self.Slider_X.value()
+    #     CuongDo_Y = self.Slider_Y.value()
+    #     CuongDo_R = self.Slider_R.value()
+    #     self.point_x.setText(str(CuongDo_X))
+    #     self.Slider_X.setValue(int(CuongDo_X))
+    #     self.point_y.setText(str(CuongDo_Y))
+    #     self.size_che.setText(str(CuongDo_R))
 
     def convert_cv_qt(self, cv_img):
         try:
@@ -146,7 +180,7 @@ class MainApp(QMainWindow, ui_main):
             path_Folder = str(self.path_folder.text())
             FileIMG = CheAnh.GetIMGinFloderDEmo(path_Folder, countIMG)
             MaxIMG = len(CheAnh.GetIMGinFloderOut(path_Folder))
-            
+
             CuongDo = self.thanh_dieuchinh.value()
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
@@ -199,7 +233,7 @@ class MainApp(QMainWindow, ui_main):
         x = event.pos().x()
         y = event.pos().y()
         label = self.findChild(QLabel, "labviewVuong")
-        size_W, size_H = 481, 519
+        size_W, size_H = 501, 509
         SizeH_img, SizeW_img, h = IMGXuLy.shape
         ptW = int(((SizeW_img - size_W) / size_W) * 100)
         ptH = int(((SizeH_img - size_H) / size_H) * 100)

@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24603b6a-706d-4964-a9c4-89b59c42669d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/icon/icons8-circled-thin-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-documents-folder-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-left-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-next-page-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-npc-face-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-remove-64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-save-as-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/icons8-surface-40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icon/vietnam.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CheAnh.py" beforeDir="false" afterPath="$PROJECT_DIR$/CheAnh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/main.ui" afterDir="false" />
     </list>
@@ -38,13 +46,14 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/GIT/Python/Xy Ly Anh",
+    "last_opened_file_path": "D:/GIT/Python/Xy Ly Anh/icon",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GIT\Python\Xy Ly Anh\icon" />
       <recent name="D:\GIT\Python\Xy Ly Anh\DataSet" />
       <recent name="D:\GIT\Python\Xy Ly Anh" />
     </key>
