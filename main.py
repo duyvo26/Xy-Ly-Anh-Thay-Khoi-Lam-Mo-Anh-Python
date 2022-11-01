@@ -10,8 +10,8 @@ import CheAnh
 
 ui_main, _ = loadUiType('main.ui')
 
-Savebtn, _LinkIMG_, linkcache, folderOut, point_XY, ViTriXY, \
-LinkSaveIMG, XYTam, IMGXuLy = 0, "", "", "", [], [], [], [], ""
+_LinkIMG_, linkcache, folderOut, point_XY, ViTriXY, \
+LinkSaveIMG, XYTam, IMGXuLy, countIMG, MaxIMG = "", "", "", [], [], [], [], "", 0, 0
 
 
 class ScrollMessageBox(QMessageBox):
@@ -53,22 +53,42 @@ class MainApp(QMainWindow, ui_main):
         self.btn_in.clicked.connect(self.SelectIn)
         self.btn_out.clicked.connect(self.SelectOut)
         self.btnSave.clicked.connect(self.SetSaveIMG)
+        self.btnDelete.clicked.connect(self.SetDeleIMG)
+        self.btnNext.clicked.connect(self.nextIMG)
+        self.btnBack.clicked.connect(self.backIMG)
+
+    def nextIMG(self):
+        global countIMG, MaxIMG
+        if countIMG + 1 >= MaxIMG:
+            QMessageBox.information(self, "Thông báo", "Không có ảnh ở phía trước")
+            return False
+        countIMG += 1
+        self.point_x.setText(str(1))
+        self.point_x.setText(str(0))
+
+    def backIMG(self):
+        global countIMG, MaxIMG
+        if countIMG - 1 < 0:
+            QMessageBox.information(self, "Thông báo", "Không có ảnh ở phía sau")
+            return False
+        countIMG -= 1
+        self.point_x.setText(str(1))
+        self.point_x.setText(str(0))
 
     def ReloadData(self):
-        global Savebtn
-
-        Savebtn = 0
         self.point_x.setText(str(0))
         self.Slider_X.setValue(int(0))
         self.point_y.setText(str(0))
         self.size_che.setText(str(0))
 
     def SetSaveIMG(self):
-        global Savebtn, _LinkIMG_, linkcache, ViTriXY, LinkSaveIMG, XYTam
-        Savebtn += 1
+        global _LinkIMG_, linkcache, ViTriXY, LinkSaveIMG, XYTam
         ViTriXY.append(XYTam[len(XYTam) - 1])
-        print(len(ViTriXY))
-        QMessageBox.information(self, "Thông báo", "Lưu thành công vị trí thứ " + str(Savebtn))
+        QMessageBox.information(self, "Thông báo", "Lưu thành công vị trí thứ " + str(len(ViTriXY)))
+
+    def SetDeleIMG(self):
+        ViTriXY.pop(len(ViTriXY) - 1)
+        QMessageBox.information(self, "Thông báo", "Đã xoá vị trí gần nhất")
 
     def BatDauLoad(self):
         self.setFixedSize(1141, 10)
@@ -121,11 +141,12 @@ class MainApp(QMainWindow, ui_main):
     def DemoIMG(self):
         try:
             import cv2
-            global Savebtn, _LinkIMG_, linkcache, IMGXuLy, ViTriXY
+            global _LinkIMG_, linkcache, IMGXuLy, ViTriXY, countIMG, MaxIMG
 
             path_Folder = str(self.path_folder.text())
-            FileIMG = CheAnh.GetIMGinFloderDEmo(path_Folder)
-
+            FileIMG = CheAnh.GetIMGinFloderDEmo(path_Folder, countIMG)
+            MaxIMG = len(CheAnh.GetIMGinFloderOut(path_Folder))
+            
             CuongDo = self.thanh_dieuchinh.value()
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
@@ -141,11 +162,10 @@ class MainApp(QMainWindow, ui_main):
                             IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 1, CuongDo, True)
                     IMGVUONG_ = self.convert_cv_qt(IMGXuLy)
                     self.ShowImg_Vuong(IMGVUONG_)
-                    #FACE
+                    # FACE
                     FileIMG = os.path.split(FileIMG)[-1]
                     cv2.imwrite(str(CheAnh.path()) + "\\img_out_demo\\" + FileIMG, IMGXuLy)
                     for i in CheAnh.GetXyFace(str(CheAnh.path()) + "\\img_out_demo\\" + FileIMG):
-
                         IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 1, CuongDo, True)
                     IMGFACE_ = self.convert_cv_qt(IMGXuLy)
                     self.ShowImg_Face(IMGFACE_)
@@ -212,7 +232,7 @@ class MainApp(QMainWindow, ui_main):
     def ThucThi_vuong(self):
         try:
             import cv2
-            global Savebtn, _LinkIMG_, linkcache, IMGXuLy, folderOut, ViTriXY
+            global _LinkIMG_, linkcache, IMGXuLy, folderOut, ViTriXY
 
             # bat dau  ###
 
@@ -270,7 +290,7 @@ class MainApp(QMainWindow, ui_main):
     def ThucThi_face(self):
         try:
             import cv2
-            global Savebtn, _LinkIMG_, linkcache, IMGXuLy, folderOut, ViTriXY
+            global _LinkIMG_, linkcache, IMGXuLy, folderOut, ViTriXY
 
             # bat dau  ###
 
@@ -336,7 +356,7 @@ class MainApp(QMainWindow, ui_main):
     def ThucThi_tron(self):
         try:
             import cv2
-            global Savebtn, _LinkIMG_, linkcache, IMGXuLy, folderOut, ViTriXY
+            global _LinkIMG_, linkcache, IMGXuLy, folderOut, ViTriXY
 
             # bat dau  ###
 

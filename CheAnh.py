@@ -1,24 +1,25 @@
 import os
 import pathlib
+
 import cv2
 import numpy as np
 
-
 BanQuyen = "BQ-duyvo26_"
+
 
 def path():
     return pathlib.Path().resolve()
+
 
 def GetXyFace(IMG):
     face_detector = cv2.CascadeClassifier('DataSet\\haarcascade_frontalface_default.xml')
     img = cv2.imread(IMG)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray)
-    print(faces)
     return faces
 
 
-def CheAnh(x, y, size, path_img, LOAD, CuongDo, LOOP = False):
+def CheAnh(x, y, size, path_img, LOAD, CuongDo, LOOP=False):
     global BanQuyen
     if LOOP == False:
         import numpy
@@ -64,7 +65,7 @@ def CheAnh(x, y, size, path_img, LOAD, CuongDo, LOOP = False):
         return dst
 
 
-def GetIMGinFloderDEmo(folder, point = 0):
+def GetIMGinFloderDEmo(folder, point=0):
     point_arr = []
     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
         for f in file:
@@ -73,18 +74,19 @@ def GetIMGinFloderDEmo(folder, point = 0):
 
     return point_arr[point]
 
+
 def GetIMGinFloderOut(folder):
     point_arr = []
     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
         for f in file:
             if ".jpg" in f or ".png" in f or ".webp" in f:
                 point_arr.append(str(root + "\\" + f))
-    print(point_arr)
     return point_arr
 
 
 def path():
     return pathlib.Path().resolve()
+
 
 def TaoThuMuc(fileName):
     try:
@@ -92,8 +94,6 @@ def TaoThuMuc(fileName):
         Path(fileName).mkdir(parents=True, exist_ok=True)
     except:
         return True
-
-
 
 # cv2.imshow("NameIMG", CheAnh(10, 20, 40, "D:\\USER\\Pictures\\img facebook\\13cadfa.jpg", 1, 90))
 # cv2.waitKey(0)

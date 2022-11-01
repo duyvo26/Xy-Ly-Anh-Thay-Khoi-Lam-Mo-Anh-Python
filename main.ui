@@ -58,7 +58,7 @@
     <property name="title">
      <string>Hình mẫu (Click vào ảnh để chọn vùng cần làm mở)</string>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnBack">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -71,7 +71,7 @@
       <string>&lt;</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_next">
+    <widget class="QPushButton" name="btnNext">
      <property name="geometry">
       <rect>
        <x>1040</x>
@@ -127,12 +127,25 @@
       <rect>
        <x>550</x>
        <y>0</y>
-       <width>93</width>
+       <width>121</width>
        <height>28</height>
       </rect>
      </property>
      <property name="text">
-      <string>Lưu</string>
+      <string>Lưu vị trí</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnDelete">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>0</y>
+       <width>121</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Xoá vị trí</string>
      </property>
     </widget>
    </widget>
@@ -201,7 +214,7 @@
      <rect>
       <x>20</x>
       <y>330</y>
-      <width>21</width>
+      <width>24</width>
       <height>551</height>
      </rect>
     </property>
