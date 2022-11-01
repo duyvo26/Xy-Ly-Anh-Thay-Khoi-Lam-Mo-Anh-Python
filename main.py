@@ -1,4 +1,6 @@
 import os
+import pathlib
+
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 from PyQt5.QtGui import QPixmap
@@ -13,6 +15,13 @@ SizeMax = []
 SIzelabel = []
 folderOut = [0]
 folderOut[0] = ""
+ViTriXY = []
+Savebtn = [0]
+Savebtn[0] = 0
+LinkSaveIMG = []
+XYTam = []
+linkOut = [0]
+linkcache = [0]
 
 
 class ScrollMessageBox(QMessageBox):
@@ -54,12 +63,34 @@ class MainApp(QMainWindow, ui_main):
         self.btn_in.clicked.connect(self.SelectIn)
         self.btn_out.clicked.connect(self.SelectOut)
 
+        self.btnSave.clicked.connect(self.SetSaveIMG)
+
+    def SetSaveIMG(self):
+        import shutil
+        Savebtn[0] += 1
+        _LinkIMG_[0] = linkcache[0]
+
+        img_name = os.path.split(_LinkIMG_[0])[-1]
+
+        newIMG = str(pathlib.Path().resolve()) + "\\img_out_demo\\" + str(Savebtn[0]) + img_name
+        shutil.copy(_LinkIMG_[0], newIMG)
+
+        newIMG_raw = str(pathlib.Path().resolve()) + "\\img_out_demo\\" + str(Savebtn[0]) + "_raw_" + img_name
+        shutil.copy(_LinkIMG_[0], newIMG_raw)
+
+        LinkSaveIMG.append(_LinkIMG_[0])
+        _LinkIMG_[0] = newIMG_raw
+        print("new link xy ly", _LinkIMG_[0])
+        ViTriXY.append(XYTam[len(XYTam) - 1])
+
+        print(len(ViTriXY))
+
     def BatDauLoad(self):
         self.setFixedSize(1141, 10)
         # QMessageBox.information(self, "Xử lý", "Đang xử lý ảnh vui lòng đợi")
 
     def DungLoad(self):
-        self.setFixedSize(1141, 916)
+        self.setFixedSize(1141, 902)
 
     def getDirectory(self):
         response = QFileDialog.getExistingDirectory(
@@ -90,7 +121,12 @@ class MainApp(QMainWindow, ui_main):
 
     def DemoIMG(self):
         try:
-            path_Folder = str(self.path_folder.text())
+            if Savebtn[0] > 0:
+                path_Folder = _LinkIMG_[0]
+            else:
+                path_Folder = str(self.path_folder.text())
+
+            print("file load", path_Folder)
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
@@ -101,12 +137,25 @@ class MainApp(QMainWindow, ui_main):
                 try:
                     txt = str(path_Folder)
                     CuongDo = self.thanh_dieuchinh.value()
-                    path_Vuong = CheAnh.GetIMGinFloderDEmo(X, Y, R, 1, txt, "img_out_demo", CuongDo, 2)
-                    path_Tron = CheAnh.GetIMGinFloderDEmo(X, Y, R, 2, txt, "img_out_demo", CuongDo, 2)
+                    if Savebtn[0] > 0:
+                        NameImgOut = txt
+                        if "_raw_" in NameImgOut:
+                            NameImgOut = NameImgOut.replace("_raw_", "")
+
+                        path_Vuong = CheAnh.CheAnh(X, Y, R, txt, 1, "img_out_demo", CuongDo, NameImgOut)
+                        print("Vuong out", path_Vuong)
+                        path_Face = CheAnh.CheAnh(X, Y, R, txt, 3, "img_out_demo", CuongDo, NameImgOut)
+
+                    else:
+                        path_Vuong = CheAnh.GetIMGinFloderDEmo(X, Y, R, 1, txt, "img_out_demo", CuongDo, 2)
+                        path_Face = CheAnh.GetIMGinFloderDEmo(X, Y, R, 3, txt, "img_out_demo", CuongDo, 2)
+
                     if "lỗi" not in path_Vuong:
-                        _LinkIMG_[0] = path_Vuong
+                        if linkcache[0] == 0:
+                            _LinkIMG_[0] = path_Vuong
+                        linkcache[0] = path_Vuong
                         self.ShowImg_Vuong(path_Vuong)
-                        self.ShowImg_Tron(path_Tron)
+                        self.ShowImg_Face(path_Face)
                     else:
                         print("LOI")
                 except:
@@ -122,17 +171,26 @@ class MainApp(QMainWindow, ui_main):
         label.mousePressEvent = self.getPoss
         label.mouseReleaseEvent = self.getPoss
 
-    def ShowImg_Tron(self, file_path):
-        label1 = self.findChild(QLabel, "labviewTron")
+    # def ShowImg_Tron(self, file_path):
+    #     label1 = self.findChild(QLabel, "labviewTron")
+    #     pixmap = QPixmap(file_path)
+    #     label1.setScaledContents(True)
+    #     label1.setPixmap(pixmap)
+    #     label1.mousePressEvent = self.getPoss
+    #     label1.mouseReleaseEvent = self.getPoss
+
+    def ShowImg_Face(self, file_path):
+        label2 = self.findChild(QLabel, "labviewFace")
         pixmap = QPixmap(file_path)
-        label1.setScaledContents(True)
-        label1.setPixmap(pixmap)
-        label1.mousePressEvent = self.getPoss
-        label1.mouseReleaseEvent = self.getPoss
+        label2.setScaledContents(True)
+        label2.setPixmap(pixmap)
+        label2.mousePressEvent = self.getPoss
+        label2.mouseReleaseEvent = self.getPoss
 
     def getPoss(self, event):
         x = event.pos().x()
         y = event.pos().y()
+
         label = self.findChild(QLabel, "labviewVuong")
         size_W, size_H = 481, 519
         import cv2
@@ -148,10 +206,13 @@ class MainApp(QMainWindow, ui_main):
         point_XY.sort()
 
         if len(point_XY) == 2:
+
             x1, y1, x2, y2 = point_XY[0][0], point_XY[0][1], point_XY[1][0], point_XY[1][1]
             pointX = x1
             pointY = y1
             CuongDo_R = x2 - x1
+            XYTam.append([int(pointX), int(pointY), int(CuongDo_R)])
+            print("nho tam", XYTam)
             self.point_x.setText(str(pointX))
             self.point_y.setText(str(pointY))
             self.size_che.setText(str(CuongDo_R))
@@ -166,26 +227,73 @@ class MainApp(QMainWindow, ui_main):
         self.label.setText(txt + "%")
 
     def ThucThi_vuong(self):
-        X = int(self.point_x.text())
-        Y = int(self.point_y.text())
-        R = int(self.size_che.text())
-        path_Folder = str(self.path_folder.text())
-        if len(path_Folder) < 2 or X == 0 or Y == 0 or R == 0:
-            QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
-            return False
+
+        if len(ViTriXY) == 0:
+            X = int(self.point_x.text())
+            Y = int(self.point_y.text())
+            R = int(self.size_che.text())
+            path_Folder = str(self.path_folder.text())
+            if len(path_Folder) < 2 or X == 0 or Y == 0 or R == 0:
+                QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
+                return False
+            else:
+                self.BatDauLoad()
+                txt = str(path_Folder)
+                import CheAnh
+                CuongDo = self.thanh_dieuchinh.value()
+                Log = CheAnh.InputData(X, Y, R, 1, txt, folderOut[0], CuongDo)
+                Log = list(Log)
+                self.DungLoad()
+                QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình vuông")
+                if len(Log[0]) > 2:
+                    ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
+                os.startfile(Log[1])
         else:
-            self.BatDauLoad()
-            txt = str(path_Folder)
-            import CheAnh
+            txt = str(self.path_folder.text())
             CuongDo = self.thanh_dieuchinh.value()
-            Log = CheAnh.InputData(X, Y, R, 1, txt, folderOut[0], CuongDo)
-            Log = list(Log)
+
+
+            from datetime import datetime
+            now = datetime.now()
+            if folderOut[0] != "" and len(folderOut[0]) > 3:
+                path_ = folderOut[0]
+            else:
+                import CheAnh
+                path_ = str(CheAnh.path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
+            CheAnh.TaoThuMuc(path_)
+            self.BatDauLoad()
+            Log=[]
+            SumFile = 0
+            for (root, dirs, file) in os.walk(txt):  # lap lay danh sach
+                for f in file:
+                    if ".jpg" in f or ".png" in f or ".webp" in f:
+                        FileIMG = root + "\\" + f
+                        for i in ViTriXY:
+                            X = i[0]
+                            Y = i[1]
+                            R = i[2]
+                            if len(txt) < 2 or X == 0 or Y == 0 or R == 0:
+                                QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
+                                return False
+                            import CheAnh
+                            print(X, Y, R, FileIMG, CuongDo)
+                            txtRaw = CheAnh.CheAnh(X, Y, R, FileIMG, 1, path_, CuongDo)
+                            if txtRaw == False:
+                                Log.append("----------------------\n")
+                                Log.append(str(SumFile) + "\n" + "ANH :\t" + f + "\t Co loi bo qua" + "\n")
+                                continue
+                            else:
+                                FileIMG = txtRaw
+                        SumFile += 1
+
             self.DungLoad()
             QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh theo hình vuông")
-            if len(Log[0]) > 2:
-                ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
-            os.startfile(Log[1])
-
+            if len(Log) > 2:
+                strLog = ""
+                for i in list(Log):
+                    strLog += i
+                ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", strLog)
+            os.startfile(path_)
 
     def ThucThi_face(self):
         path_Folder = str(self.path_folder.text())
@@ -209,7 +317,6 @@ class MainApp(QMainWindow, ui_main):
             if len(Log[0]) > 2:
                 ScrollMessageBox(QMessageBox.Critical, "Có lỗi !", Log[0])
             os.startfile(Log[1])
-
 
     def ThucThi_tron(self):
         X = int(self.point_x.text())

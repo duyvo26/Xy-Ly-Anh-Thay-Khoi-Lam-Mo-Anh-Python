@@ -6,6 +6,8 @@ import numpy as np
 BanQuyen = [0]
 BanQuyen[0] = "BQ-duyvo26_"
 
+
+
 def path():
     return pathlib.Path().resolve()
 
@@ -14,11 +16,11 @@ def GetXyFace(path_img):
     print(path_img)
     img = cv2.imread(path_img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_detector.detectMultiScale(gray, 1.3, 5)
+    faces = face_detector.detectMultiScale(gray)
     return faces
 
 
-def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
+def CheAnh(x, y, size, path_img, LOAD, output, CuongDo, NameImgOUT = ""):
     import numpy
     stream = open(path_img, "rb")
     bytes = bytearray(stream.read())
@@ -28,6 +30,9 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
     img_name = os.path.split(path_img)[-1]
     if BanQuyen[0] not in img_name:
         img_name = BanQuyen[0] + img_name
+    if NameImgOUT != "":
+        img_name = os.path.split(NameImgOUT)[-1]
+
 
     leftTop = (x, y)
     LeftToRight_TopToBottom = (size, size)
@@ -45,8 +50,13 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
         temp = cv2.resize(ROI, (CuongDo, CuongDo), interpolation=cv2.INTER_NEAREST)
         blur = cv2.resize(temp, size_IMG, interpolation=cv2.INTER_NEAREST)
         image[y:y + h, x:x + w] = blur
-        cv2.imwrite(output + "\\" + img_name, image)
-        return output + "\\" + img_name
+        if "_V_" not in img_name:
+            cv2.imwrite(output + "\\_V_" + img_name, image)
+            return output + "\\_V_" + img_name
+        else:
+            cv2.imwrite(output + "\\" + img_name, image)
+            return output + "\\" + img_name
+
 
     if LOAD == 2:
         ROI = image_r.copy()
@@ -62,8 +72,27 @@ def CheAnh(x, y, size, path_img, LOAD, output, CuongDo):
         img1_bg = cv2.bitwise_and(image_r, image_r, mask=mask_inv)
         img2_fg = cv2.bitwise_and(tempImg, tempImg, mask=mask)
         dst = cv2.add(img1_bg, img2_fg)
-        cv2.imwrite(output + "\\" + img_name, dst)
-        return output + "\\" + img_name
+        if "_T_" not in img_name:
+            cv2.imwrite(output + "\\_T_" + img_name, dst)
+            return output + "\\_T_" + img_name
+        else:
+            cv2.imwrite(output + "\\" + img_name, dst)
+            return output + "\\" + img_name
+
+    if LOAD == 3:
+        image = image_r
+        ROI = image[y:y + h, x:x + w]
+        size_IMG = (ROI.shape[1], ROI.shape[0])
+        CuongDo = int((((h_max - (h_max * CuongDo) / 100) / 10) + 10) / 4)
+        temp = cv2.resize(ROI, (CuongDo, CuongDo), interpolation=cv2.INTER_NEAREST)
+        blur = cv2.resize(temp, size_IMG, interpolation=cv2.INTER_NEAREST)
+        image[y:y + h, x:x + w] = blur
+        if "_F_" not in img_name:
+            cv2.imwrite(output + "\\_F_" + img_name, image)
+            return output + "\\_F_" + img_name
+        else:
+            cv2.imwrite(output + "\\" + img_name, image)
+            return output + "\\" + img_name
 
 
 def GetIMGinFloder(x, y, r, status, folder, output, CuongDo):
@@ -105,11 +134,16 @@ def GetIMGinFloderDEmo(x, y, r, status, folder, output, CuongDo, coutIMG):
                 SumFile += 1
                 FileIMG = root + "\\" + f
                 try:
-                    kq = CheAnh(x, y, r, FileIMG, status, output, CuongDo)
+                    if status == 3:
+                        for face in GetXyFace(FileIMG):
+                            x_, y_, r_, w = face
+                            kq = CheAnh(x_, y_, r_, FileIMG, 3, output, CuongDo)
+                        kq = CheAnh(x, y, r, kq, 3, output, CuongDo)
+                    else:
+                        kq = CheAnh(x, y, r, FileIMG, status, output, CuongDo)
                     if kq == False:
                         return "Có lỗi khi nhập kich thươc ảnh vui lòng thử lại"
-                    else:
-                        return kq
+                    return kq
                 except Exception as mess:
                     return False
 
