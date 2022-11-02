@@ -9,7 +9,7 @@ from PyQt5 import QtCore
 
 import CheAnh
 
-ui_main, _ = loadUiType('main.ui')
+ui_main, _ = loadUiType('_data_\\main.ui')
 
 _LinkIMG_, linkcache, folderOut, point_XY, ViTriXY, \
 LinkSaveIMG, XYTam, IMGXuLy, countIMG, MaxIMG = "", "", "", [], [], [], [], "", 0, 0
@@ -35,21 +35,21 @@ class MainApp(QMainWindow, ui_main):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
-        self.setWindowIcon(QtGui.QIcon('app.ico'))
+        self.setWindowIcon(QtGui.QIcon('_data_\\app.ico'))
         self.path_folder.textChanged.connect(self.ReloadData)
         self.btn_batdau_vuong.clicked.connect(self.ThucThi_vuong)
         self.btn_batdau_vuong.clicked.connect(self.ReloadData)
-        self.btn_batdau_vuong.setIcon(QIcon("icon\\icons8-surface-40.png"))
+        self.btn_batdau_vuong.setIcon(QIcon("_data_\\icon\\icons8-surface-40.png"))
         self.btn_batdau_vuong.setIconSize(QtCore.QSize(35, 35))
 
         self.btn_batdau_tron.clicked.connect(self.ThucThi_tron)
         self.btn_batdau_tron.clicked.connect(self.ReloadData)
-        self.btn_batdau_tron.setIcon(QIcon("icon\\icons8-circled-thin-48.png"))
+        self.btn_batdau_tron.setIcon(QIcon("_data_\\icon\\icons8-circled-thin-48.png"))
         self.btn_batdau_tron.setIconSize(QtCore.QSize(35, 35))
 
         self.btn_batdau_face.clicked.connect(self.ThucThi_face)
         self.btn_batdau_face.clicked.connect(self.ReloadData)
-        self.btn_batdau_face.setIcon(QIcon("icon\\icons8-npc-face-48.png"))
+        self.btn_batdau_face.setIcon(QIcon("_data_\\icon\\icons8-npc-face-48.png"))
         self.btn_batdau_face.setIconSize(QtCore.QSize(35, 35))
 
         self.thanh_dieuchinh.valueChanged.connect(self.CuongDo)
@@ -61,31 +61,37 @@ class MainApp(QMainWindow, ui_main):
         self.path_folder.textChanged.connect(self.DemoIMG)
         self.path_folder_out.textChanged.connect(self.SaveOutFolder)
         self.btn_in.clicked.connect(self.SelectIn)
-        self.btn_in.setIcon(QIcon("icon\\icons8-documents-folder-48.png"))
+        self.btn_in.setIcon(QIcon("_data_\\icon\\icons8-documents-folder-48.png"))
         self.btn_in.setIconSize(QtCore.QSize(45, 45))
         self.btn_in.setToolTip("Chọn thư mục")
         self.btn_out.clicked.connect(self.SelectOut)
-        self.btn_out.setIcon(QIcon("icon\\icons8-documents-folder-48.png"))
+        self.btn_out.setIcon(QIcon("_data_\\icon\\icons8-documents-folder-48.png"))
         self.btn_out.setIconSize(QtCore.QSize(45, 45))
         self.btn_out.setToolTip("Chọn thư mục xuất ảnh")
         self.btnSave.clicked.connect(self.SetSaveIMG)
-        self.btnSave.setIcon(QIcon("icon\\icons8-save-as-48.png"))
+        self.btnSave.setIcon(QIcon("_data_\\icon\\icons8-save-as-48.png"))
         self.btnSave.setIconSize(QtCore.QSize(45, 45))
         self.btnSave.setToolTip("Lưu vị trí")
         self.btnDelete.clicked.connect(self.SetDeleIMG)
-        self.btnDelete.setIcon(QIcon("icon\\icons8-remove-64.png"))
+        self.btnDelete.setIcon(QIcon("_data_\\icon\\icons8-remove-64.png"))
         self.btnDelete.setIconSize(QtCore.QSize(45, 45))
         self.btnDelete.setToolTip("Xoá vị trí")
 
         self.btnNext.clicked.connect(self.nextIMG)
-        self.btnNext.setIcon(QIcon("icon\\icons8-next-page-50.png"))
+        self.btnNext.setIcon(QIcon("_data_\\icon\\icons8-next-page-50.png"))
         self.btnNext.setIconSize(QtCore.QSize(45, 45))
         self.btnNext.setToolTip("Ảnh tiếp theo")
 
         self.btnBack.clicked.connect(self.backIMG)
-        self.btnBack.setIcon(QIcon("icon\\icons8-left-50.png"))
+        self.btnBack.setIcon(QIcon("_data_\\icon\\icons8-left-50.png"))
         self.btnBack.setIconSize(QtCore.QSize(45, 45))
         self.btnBack.setToolTip("Ảnh trước")
+
+        self.btnReload.clicked.connect(self.ReloadData)
+        self.btnReload.setIcon(QIcon("_data_\\icon\\refresh.png"))
+        self.btnReload.setIconSize(QtCore.QSize(45, 45))
+        self.btnReload.setToolTip("Reload dữ liệu")
+
 
     def nextIMG(self):
         global countIMG, MaxIMG
@@ -121,6 +127,7 @@ class MainApp(QMainWindow, ui_main):
     def SetDeleIMG(self):
         global ViTriXY
         if len(ViTriXY) > 0:
+            print("Xoa vi tri")
             ViTriXY.pop(len(ViTriXY) - 1)
             QMessageBox.information(self, "Thông báo", "Đã xoá vị trí gần nhất")
 
@@ -161,7 +168,7 @@ class MainApp(QMainWindow, ui_main):
     #     self.point_y.setText(str(CuongDo_Y))
     #     self.size_che.setText(str(CuongDo_R))
 
-    def convert_cv_qt(self, cv_img):
+    def convert_cv_qt(self, cv_img, err = False):
         try:
             import cv2
             height, width, channel = cv_img.shape
@@ -169,8 +176,11 @@ class MainApp(QMainWindow, ui_main):
             qImg = QImage(cv_img.data, width, height, bytesPerLine, QImage.Format_RGB888).rgbSwapped()
             return qImg
         except Exception as ex:
-            print(ex)
-            return False
+            print("conver", ex)
+            if err == True:
+                QMessageBox.information(self, "Thông báo", "Vi trí che không phù hợp với ảnh")
+            return "ERR"
+
 
     def DemoIMG(self):
         try:
@@ -194,20 +204,22 @@ class MainApp(QMainWindow, ui_main):
                     if len(ViTriXY) > 0:
                         for i in ViTriXY:
                             IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 1, CuongDo, True)
-                    IMGVUONG_ = self.convert_cv_qt(IMGXuLy)
+                    IMGVUONG_ = self.convert_cv_qt(IMGXuLy, True)
                     self.ShowImg_Vuong(IMGVUONG_)
                     # FACE
                     FileIMG = os.path.split(FileIMG)[-1]
-                    cv2.imwrite(str(CheAnh.path()) + "\\img_out_demo\\" + FileIMG, IMGXuLy)
-                    for i in CheAnh.GetXyFace(str(CheAnh.path()) + "\\img_out_demo\\" + FileIMG):
+                    cv2.imwrite(str(CheAnh.path()) + "\\_data_\\img_out_demo\\" + FileIMG, IMGXuLy)
+                    for i in CheAnh.GetXyFace(str(CheAnh.path()) + "\\_data_\\img_out_demo\\" + FileIMG):
                         IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 1, CuongDo, True)
                     IMGFACE_ = self.convert_cv_qt(IMGXuLy)
                     self.ShowImg_Face(IMGFACE_)
+
                 except Exception as ex:
-                    print(ex)
+                    print("demo load", ex)
                     self.point_x.setText(str(0))
                     self.point_y.setText(str(0))
                     self.size_che.setText(str(0))
+
 
         except Exception as ex:
             print(ex)
@@ -281,7 +293,7 @@ class MainApp(QMainWindow, ui_main):
             if folderOut != "" and len(folderOut) > 3:
                 path_ = folderOut
             else:
-                path_ = str(CheAnh.path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
+                path_ = str(CheAnh.path()) + "\\_data_\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
                 path_ = path_ + "\\VUONG"
                 CheAnh.TaoThuMuc(str(path_))
 
@@ -302,17 +314,21 @@ class MainApp(QMainWindow, ui_main):
                             for i in ViTriXY:
                                 IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 1, CuongDo, True)
 
-                        FileIMG = os.path.split(FileIMG)[-1]
-                        print(path_ + str(FileIMG))
-                        cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
+                        if len(IMGXuLy) <= 0:
+                            LogERR.append("\n" + "ANH :\t" + FileIMG + "\t Co loi bo qua" + "\n")
+                        else:
+                            FileIMG = os.path.split(FileIMG)[-1]
+                            cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
+                            print("SIZE", os.path.getsize(path_ + "\\" + str(FileIMG)))
 
                     except Exception as ex:
-                        print(ex)
+                        print("Loi xuat", ex)
                         LogERR.append("\n" + "ANH :\t" + FileIMG + "\t Co loi bo qua" + "\n")
+                        continue
                 # hoan thanh ####
                 self.DungLoad()
                 QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh")
-                if len(LogERR) > 2:
+                if len(LogERR) > 0:
                     strLOG = ""
                     for i in LogERR:
                         strLOG += i
@@ -339,7 +355,7 @@ class MainApp(QMainWindow, ui_main):
             if folderOut != "" and len(folderOut) > 3:
                 path_ = folderOut
             else:
-                path_ = str(CheAnh.path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
+                path_ = str(CheAnh.path()) + "\\_data_\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
                 path_ = path_ + "\\FACE"
                 CheAnh.TaoThuMuc(str(path_))
 
@@ -366,10 +382,13 @@ class MainApp(QMainWindow, ui_main):
                         cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
 
                         for i in CheAnh.GetXyFace(path_ + "\\" + str(FileIMG)):
-                            print(i)
                             IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 1, CuongDo, True)
 
-                        cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
+                        if len(IMGXuLy) <= 0:
+                            LogERR.append("\n" + "ANH :\t" + FileIMG + "\t Co loi bo qua" + "\n")
+                        else:
+                            cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
+                            print("SIZE", os.path.getsize(path_ + "\\" + str(FileIMG)))
 
 
                     except Exception as ex:
@@ -378,7 +397,7 @@ class MainApp(QMainWindow, ui_main):
                 # hoan thanh ####
                 self.DungLoad()
                 QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh")
-                if len(LogERR) > 2:
+                if len(LogERR) > 0:
                     strLOG = ""
                     for i in LogERR:
                         strLOG += i
@@ -406,7 +425,7 @@ class MainApp(QMainWindow, ui_main):
             if folderOut != "" and len(folderOut) > 3:
                 path_ = folderOut
             else:
-                path_ = str(CheAnh.path()) + "\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
+                path_ = str(CheAnh.path()) + "\\_data_\\img_out\\" + str(now.strftime("%m-%d-%Y_%H"))
                 path_ = path_ + "\\TRON"
                 CheAnh.TaoThuMuc(str(path_))
 
@@ -427,9 +446,12 @@ class MainApp(QMainWindow, ui_main):
                             for i in ViTriXY:
                                 IMGXuLy = CheAnh.CheAnh(i[0], i[1], i[2], IMGXuLy, 2, CuongDo, True)
 
-                        FileIMG = os.path.split(FileIMG)[-1]
-                        print(path_ + str(FileIMG))
-                        cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
+                        if len(IMGXuLy) <= 0:
+                            LogERR.append("\n" + "ANH :\t" + FileIMG + "\t Co loi bo qua" + "\n")
+                        else:
+                            FileIMG = os.path.split(FileIMG)[-1]
+                            cv2.imwrite(path_ + "\\" + str(FileIMG), IMGXuLy)
+                            print("SIZE", os.path.getsize(path_ + "\\" + str(FileIMG)))
 
                     except Exception as ex:
                         print(ex)
@@ -437,7 +459,7 @@ class MainApp(QMainWindow, ui_main):
                 # hoan thanh ####
                 self.DungLoad()
                 QMessageBox.information(self, "Thông báo", "Hoàn thành che ảnh")
-                if len(LogERR) > 2:
+                if len(LogERR) > 0:
                     strLOG = ""
                     for i in LogERR:
                         strLOG += i
@@ -448,8 +470,8 @@ class MainApp(QMainWindow, ui_main):
 
 
 def Main():
-    CheAnh.TaoThuMuc('img_out')
-    CheAnh.TaoThuMuc('img_out_demo')
+    CheAnh.TaoThuMuc('_data_\\img_out')
+    CheAnh.TaoThuMuc('_data_\\img_out_demo')
     app = QApplication(sys.argv)
     window = MainApp()
     window.show()

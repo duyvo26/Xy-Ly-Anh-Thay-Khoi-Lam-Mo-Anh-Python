@@ -54,7 +54,6 @@
    'PYMODULE'),
   ('contextlib', 'I:\\Program Files\\Python39\\lib\\contextlib.py', 'PYMODULE'),
   ('_strptime', 'I:\\Program Files\\Python39\\lib\\_strptime.py', 'PYMODULE'),
-  ('datetime', 'I:\\Program Files\\Python39\\lib\\datetime.py', 'PYMODULE'),
   ('calendar', 'I:\\Program Files\\Python39\\lib\\calendar.py', 'PYMODULE'),
   ('argparse', 'I:\\Program Files\\Python39\\lib\\argparse.py', 'PYMODULE'),
   ('textwrap', 'I:\\Program Files\\Python39\\lib\\textwrap.py', 'PYMODULE'),
@@ -67,6 +66,10 @@
   ('importlib',
    'I:\\Program Files\\Python39\\lib\\importlib\\__init__.py',
    'PYMODULE'),
+  ('importlib.abc',
+   'I:\\Program Files\\Python39\\lib\\importlib\\abc.py',
+   'PYMODULE'),
+  ('typing', 'I:\\Program Files\\Python39\\lib\\typing.py', 'PYMODULE'),
   ('importlib._bootstrap',
    'I:\\Program Files\\Python39\\lib\\importlib\\_bootstrap.py',
    'PYMODULE'),
@@ -76,10 +79,6 @@
   ('importlib.metadata',
    'I:\\Program Files\\Python39\\lib\\importlib\\metadata.py',
    'PYMODULE'),
-  ('importlib.abc',
-   'I:\\Program Files\\Python39\\lib\\importlib\\abc.py',
-   'PYMODULE'),
-  ('typing', 'I:\\Program Files\\Python39\\lib\\typing.py', 'PYMODULE'),
   ('configparser',
    'I:\\Program Files\\Python39\\lib\\configparser.py',
    'PYMODULE'),
@@ -300,9 +299,6 @@
   ('multiprocessing',
    'I:\\Program Files\\Python39\\lib\\multiprocessing\\__init__.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'I:\\Program Files\\Python39\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('stringprep', 'I:\\Program Files\\Python39\\lib\\stringprep.py', 'PYMODULE'),
   ('getpass', 'I:\\Program Files\\Python39\\lib\\getpass.py', 'PYMODULE'),
   ('nturl2path', 'I:\\Program Files\\Python39\\lib\\nturl2path.py', 'PYMODULE'),
@@ -314,6 +310,10 @@
    'I:\\Program Files\\Python39\\lib\\http\\cookiejar.py',
    'PYMODULE'),
   ('_py_abc', 'I:\\Program Files\\Python39\\lib\\_py_abc.py', 'PYMODULE'),
+  ('tracemalloc',
+   'I:\\Program Files\\Python39\\lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('datetime', 'I:\\Program Files\\Python39\\lib\\datetime.py', 'PYMODULE'),
   ('platform', 'I:\\Program Files\\Python39\\lib\\platform.py', 'PYMODULE'),
   ('numpy.core.multiarray',
    'I:\\Program '
@@ -921,9 +921,6 @@
    'I:\\Program Files\\Python39\\lib\\site-packages\\numpy\\__config__.py',
    'PYMODULE'),
   ('CheAnh', 'D:\\GIT\\Python\\Xy Ly Anh\\CheAnh.py', 'PYMODULE'),
-  ('PyQt5',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\__init__.py',
-   'PYMODULE'),
   ('PyQt5.uic',
    'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\__init__.py',
    'PYMODULE'),
@@ -1032,70 +1029,21 @@
   ('PyQt5.uic.Compiler',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\Compiler\\__init__.py',
+   'PYMODULE'),
+  ('PyQt5',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\__init__.py',
    'PYMODULE')],
- [('VCRUNTIME140.dll',
+ [('python39.dll', 'I:\\Program Files\\Python39\\python39.dll', 'BINARY'),
+  ('VCRUNTIME140.dll',
    'I:\\Program Files\\Python39\\VCRUNTIME140.dll',
-   'BINARY'),
-  ('python39.dll', 'I:\\Program Files\\Python39\\python39.dll', 'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\imageformats\\qjpeg.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qjpeg.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\platforms\\qwindows.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qwindows.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\iconengines\\qsvgicon.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\iconengines\\qsvgicon.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\imageformats\\qtiff.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qtiff.dll',
-   'BINARY'),
-  ('libEGL.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\libEGL.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\imageformats\\qtga.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qtga.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\styles\\qwindowsvistastyle.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\styles\\qwindowsvistastyle.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\platforms\\qwebgl.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qwebgl.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\platforms\\qoffscreen.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qoffscreen.dll',
    'BINARY'),
   ('PyQt5\\Qt5\\plugins\\imageformats\\qwebp.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qwebp.dll',
    'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\imageformats\\qwbmp.dll',
+  ('d3dcompiler_47.dll',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qwbmp.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\platformthemes\\qxdgdesktopportal.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platformthemes\\qxdgdesktopportal.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\imageformats\\qsvg.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qsvg.dll',
-   'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\imageformats\\qicns.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qicns.dll',
-   'BINARY'),
-  ('libopenblas.FB5AE2TYXYH2IJRDKGDGQ3XBKLKTF43H.gfortran-win_amd64.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\numpy\\.libs\\libopenblas.FB5AE2TYXYH2IJRDKGDGQ3XBKLKTF43H.gfortran-win_amd64.dll',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\d3dcompiler_47.dll',
    'BINARY'),
   ('opengl32sw.dll',
    'I:\\Program '
@@ -1109,21 +1057,73 @@
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\cv2\\opencv_videoio_ffmpeg460_64.dll',
    'BINARY'),
-  ('d3dcompiler_47.dll',
+  ('PyQt5\\Qt5\\plugins\\platformthemes\\qxdgdesktopportal.dll',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\d3dcompiler_47.dll',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platformthemes\\qxdgdesktopportal.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\imageformats\\qsvg.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qsvg.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\platforms\\qoffscreen.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qoffscreen.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\imageformats\\qjpeg.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qjpeg.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\platforms\\qwebgl.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qwebgl.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\imageformats\\qtiff.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qtiff.dll',
    'BINARY'),
   ('PyQt5\\Qt5\\plugins\\imageformats\\qico.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qico.dll',
    'BINARY'),
-  ('PyQt5\\Qt5\\plugins\\platforms\\qminimal.dll',
+  ('PyQt5\\Qt5\\plugins\\styles\\qwindowsvistastyle.dll',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qminimal.dll',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\styles\\qwindowsvistastyle.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\platforms\\qwindows.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qwindows.dll',
+   'BINARY'),
+  ('libopenblas.FB5AE2TYXYH2IJRDKGDGQ3XBKLKTF43H.gfortran-win_amd64.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\numpy\\.libs\\libopenblas.FB5AE2TYXYH2IJRDKGDGQ3XBKLKTF43H.gfortran-win_amd64.dll',
+   'BINARY'),
+  ('libEGL.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\libEGL.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\imageformats\\qicns.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qicns.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\imageformats\\qwbmp.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qwbmp.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\iconengines\\qsvgicon.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\iconengines\\qsvgicon.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\imageformats\\qtga.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\imageformats\\qtga.dll',
    'BINARY'),
   ('libGLESv2.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\libGLESv2.dll',
+   'BINARY'),
+  ('PyQt5\\Qt5\\plugins\\platforms\\qminimal.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\plugins\\platforms\\qminimal.dll',
    'BINARY'),
   ('_multiprocessing',
    'I:\\Program Files\\Python39\\DLLs\\_multiprocessing.pyd',
@@ -1207,13 +1207,6 @@
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\numpy\\fft\\_pocketfft_internal.cp39-win_amd64.pyd',
    'EXTENSION'),
-  ('PyQt5.sip',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\sip.cp39-win_amd64.pyd',
-   'EXTENSION'),
-  ('PyQt5.QtGui',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\QtGui.pyd',
-   'EXTENSION'),
   ('PyQt5.QtCore',
    'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\QtCore.pyd',
    'EXTENSION'),
@@ -1223,6 +1216,13 @@
   ('PyQt5.QtWidgets',
    'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\QtWidgets.pyd',
    'EXTENSION'),
+  ('PyQt5.QtGui',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\PyQt5\\QtGui.pyd',
+   'EXTENSION'),
+  ('PyQt5.sip',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\sip.cp39-win_amd64.pyd',
+   'EXTENSION'),
   ('Qt5Gui.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Gui.dll',
@@ -1231,33 +1231,33 @@
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Core.dll',
    'BINARY'),
-  ('VCRUNTIME140_1.dll',
-   'I:\\Program Files\\Python39\\VCRUNTIME140_1.dll',
+  ('Qt5DBus.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5DBus.dll',
    'BINARY'),
-  ('MSVCP140.dll', 'C:\\Windows\\system32\\MSVCP140.dll', 'BINARY'),
   ('Qt5Svg.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Svg.dll',
-   'BINARY'),
-  ('Qt5Widgets.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Widgets.dll',
-   'BINARY'),
-  ('Qt5Network.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Network.dll',
    'BINARY'),
   ('Qt5Quick.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Quick.dll',
    'BINARY'),
+  ('Qt5Network.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Network.dll',
+   'BINARY'),
+  ('MSVCP140.dll', 'C:\\Windows\\system32\\MSVCP140.dll', 'BINARY'),
   ('Qt5WebSockets.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5WebSockets.dll',
    'BINARY'),
-  ('Qt5DBus.dll',
+  ('VCRUNTIME140_1.dll',
+   'I:\\Program Files\\Python39\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('Qt5Widgets.dll',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5DBus.dll',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Widgets.dll',
    'BINARY'),
   ('libcrypto-1_1.dll',
    'I:\\Program Files\\Python39\\DLLs\\libcrypto-1_1.dll',
@@ -1275,13 +1275,13 @@
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\MSVCP140_1.dll',
    'BINARY'),
-  ('Qt5QmlModels.dll',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5QmlModels.dll',
-   'BINARY'),
   ('Qt5Qml.dll',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5Qml.dll',
+   'BINARY'),
+  ('Qt5QmlModels.dll',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\bin\\Qt5QmlModels.dll',
    'BINARY')],
  [],
  [],
@@ -1289,150 +1289,109 @@
    'D:\\GIT\\Python\\Xy Ly Anh\\build\\Xu Ly Anh - 19TinTT '
    'Duyvo-VinhKhang\\base_library.zip',
    'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebenginewidgets.cpython-39.pyc',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebenginewidgets.cpython-39.pyc',
-   'DATA'),
-  ('cv2\\utils\\__init__.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\utils\\__init__.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_ar.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ar.qm',
-   'DATA'),
-  ('cv2\\config-3.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\config-3.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_pl.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_pl.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_hu.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_hu.qm',
-   'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qscintilla.cpython-39.pyc',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qscintilla.cpython-39.pyc',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_ko.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ko.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_sk.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_sk.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_fr.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_fr.qm',
-   'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\qtwebkit.py',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtwebkit.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_he.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_he.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_ja.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ja.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_ru.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ru.qm',
-   'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\qtwebenginewidgets.py',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtwebenginewidgets.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_bg.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_bg.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_zh_TW.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_zh_TW.qm',
-   'DATA'),
-  ('cv2\\version.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\version.py',
-   'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\qtcharts.py',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtcharts.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_tr.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_tr.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_de.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_de.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_gd.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_gd.qm',
-   'DATA'),
-  ('cv2\\data\\__init__.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\data\\__init__.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_cs.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_cs.qm',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_lv.qm',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_lv.qm',
-   'DATA'),
-  ('cv2\\load_config_py2.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\load_config_py2.py',
+  ('cv2\\misc\\version.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\misc\\version.py',
    'DATA'),
   ('PyQt5\\Qt5\\translations\\qtbase_da.qm',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_da.qm',
    'DATA'),
-  ('cv2\\mat_wrapper\\__init__.py',
+  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qaxcontainer.cpython-39.pyc',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\cv2\\mat_wrapper\\__init__.py',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qaxcontainer.cpython-39.pyc',
    'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_ca.qm',
+  ('PyQt5\\Qt5\\translations\\qtbase_lv.qm',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ca.qm',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_lv.qm',
    'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_en.qm',
+  ('PyQt5\\uic\\widget-plugins\\qtwebenginewidgets.py',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_en.qm',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtwebenginewidgets.py',
    'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_it.qm',
+  ('cv2\\load_config_py3.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\load_config_py3.py',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_ko.qm',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_it.qm',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ko.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_es.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_es.qm',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtquickwidgets.cpython-39.pyc',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtquickwidgets.cpython-39.pyc',
+   'DATA'),
+  ('cv2\\misc\\__init__.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\misc\\__init__.py',
+   'DATA'),
+  ('cv2\\version.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\version.py',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_tr.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_tr.qm',
+   'DATA'),
+  ('cv2\\config-3.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\config-3.py',
    'DATA'),
   ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtprintsupport.cpython-39.pyc',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtprintsupport.cpython-39.pyc',
    'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebkit.cpython-39.pyc',
+  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qscintilla.cpython-39.pyc',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebkit.cpython-39.pyc',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qscintilla.cpython-39.pyc',
+   'DATA'),
+  ('cv2\\load_config_py2.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\load_config_py2.py',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\qtcharts.py',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtcharts.py',
    'DATA'),
   ('cv2\\gapi\\__init__.py',
    'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\gapi\\__init__.py',
    'DATA'),
-  ('cv2\\misc\\version.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\misc\\version.py',
+  ('PyQt5\\Qt5\\translations\\qtbase_he.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_he.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_de.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_de.qm',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebenginewidgets.cpython-39.pyc',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebenginewidgets.cpython-39.pyc',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_fr.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_fr.qm',
+   'DATA'),
+  ('cv2\\data\\__init__.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\data\\__init__.py',
    'DATA'),
   ('PyQt5\\Qt5\\translations\\qtbase_fi.qm',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_fi.qm',
    'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\qaxcontainer.py',
+  ('PyQt5\\Qt5\\translations\\qtbase_it.qm',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qaxcontainer.py',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_it.qm',
    'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qaxcontainer.cpython-39.pyc',
+  ('PyQt5\\Qt5\\translations\\qtbase_ca.qm',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qaxcontainer.cpython-39.pyc',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ca.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_uk.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_uk.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_bg.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_bg.qm',
    'DATA'),
   ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtcharts.cpython-39.pyc',
    'I:\\Program '
@@ -1442,45 +1401,190 @@
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qscintilla.py',
    'DATA'),
-  ('cv2\\misc\\__init__.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\misc\\__init__.py',
+  ('cv2\\config.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\config.py',
    'DATA'),
-  ('cv2\\__init__.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\__init__.py',
-   'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_uk.qm',
+  ('cv2\\mat_wrapper\\__init__.py',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_uk.qm',
-   'DATA'),
-  ('cv2\\load_config_py3.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\load_config_py3.py',
-   'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\qtquickwidgets.py',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtquickwidgets.py',
-   'DATA'),
-  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtquickwidgets.cpython-39.pyc',
-   'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtquickwidgets.cpython-39.pyc',
+   'Files\\Python39\\lib\\site-packages\\cv2\\mat_wrapper\\__init__.py',
    'DATA'),
   ('PyQt5\\uic\\widget-plugins\\qtprintsupport.py',
    'I:\\Program '
    'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtprintsupport.py',
    'DATA'),
-  ('PyQt5\\Qt5\\translations\\qtbase_es.qm',
+  ('PyQt5\\Qt5\\translations\\qtbase_gd.qm',
    'I:\\Program '
-   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_es.qm',
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_gd.qm',
    'DATA'),
-  ('cv2\\config.py',
-   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\config.py',
+  ('PyQt5\\Qt5\\translations\\qtbase_hu.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_hu.qm',
    'DATA'),
-  ('wheel-0.37.1.dist-info\\RECORD',
+  ('PyQt5\\Qt5\\translations\\qtbase_zh_TW.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_zh_TW.qm',
+   'DATA'),
+  ('cv2\\__init__.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\__init__.py',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_ar.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ar.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_cs.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_cs.qm',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\qaxcontainer.py',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qaxcontainer.py',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_sk.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_sk.qm',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebkit.cpython-39.pyc',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\__pycache__\\qtwebkit.cpython-39.pyc',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_en.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_en.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_ja.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ja.qm',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\qtwebkit.py',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtwebkit.py',
+   'DATA'),
+  ('cv2\\utils\\__init__.py',
+   'I:\\Program Files\\Python39\\lib\\site-packages\\cv2\\utils\\__init__.py',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_ru.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_ru.qm',
+   'DATA'),
+  ('PyQt5\\Qt5\\translations\\qtbase_pl.qm',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\Qt5\\translations\\qtbase_pl.qm',
+   'DATA'),
+  ('PyQt5\\uic\\widget-plugins\\qtquickwidgets.py',
+   'I:\\Program '
+   'Files\\Python39\\lib\\site-packages\\PyQt5\\uic\\widget-plugins\\qtquickwidgets.py',
+   'DATA'),
+  ('wheel-0.37.1.dist-info\\LICENSE.txt',
    'i:\\program '
-   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\RECORD',
+   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('wheel-0.37.1.dist-info\\METADATA',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\METADATA',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\LICENSE',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\LICENSE',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\RECORD',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\RECORD',
    'DATA'),
   ('wheel-0.37.1.dist-info\\entry_points.txt',
    'i:\\program '
    'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\entry_points.txt',
+   'DATA'),
+  ('altgraph-0.17.2.dist-info\\INSTALLER',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\INSTALLER',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\top_level.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\top_level.txt',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\INSTALLER',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\INSTALLER',
+   'DATA'),
+  ('altgraph-0.17.2.dist-info\\WHEEL',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\WHEEL',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\entry_points.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\entry_points.txt',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\entry_points.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\entry_points.txt',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\METADATA',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\METADATA',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\WHEEL',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\WHEEL',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\RECORD',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\RECORD',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\REQUESTED',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\REQUESTED',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\top_level.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\top_level.txt',
+   'DATA'),
+  ('altgraph-0.17.2.dist-info\\zip-safe',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\zip-safe',
+   'DATA'),
+  ('altgraph-0.17.2.dist-info\\METADATA',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\METADATA',
+   'DATA'),
+  ('altgraph-0.17.2.dist-info\\top_level.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\top_level.txt',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\INSTALLER',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\INSTALLER',
+   'DATA'),
+  ('wheel-0.37.1.dist-info\\WHEEL',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\WHEEL',
+   'DATA'),
+  ('wheel-0.37.1.dist-info\\top_level.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\top_level.txt',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\METADATA',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\METADATA',
+   'DATA'),
+  ('pyinstaller-5.3.dist-info\\COPYING.txt',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\COPYING.txt',
+   'DATA'),
+  ('altgraph-0.17.2.dist-info\\LICENSE',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\LICENSE',
+   'DATA'),
+  ('setuptools-58.1.0.dist-info\\REQUESTED',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\REQUESTED',
+   'DATA'),
+  ('wheel-0.37.1.dist-info\\INSTALLER',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\INSTALLER',
+   'DATA'),
+  ('wheel-0.37.1.dist-info\\RECORD',
+   'i:\\program '
+   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\RECORD',
    'DATA'),
   ('altgraph-0.17.2.dist-info\\RECORD',
    'i:\\program '
@@ -1489,109 +1593,5 @@
   ('pyinstaller-5.3.dist-info\\WHEEL',
    'i:\\program '
    'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\WHEEL',
-   'DATA'),
-  ('altgraph-0.17.2.dist-info\\LICENSE',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\LICENSE',
-   'DATA'),
-  ('altgraph-0.17.2.dist-info\\top_level.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\top_level.txt',
-   'DATA'),
-  ('wheel-0.37.1.dist-info\\top_level.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\top_level.txt',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\LICENSE',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\LICENSE',
-   'DATA'),
-  ('wheel-0.37.1.dist-info\\WHEEL',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\WHEEL',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\top_level.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\top_level.txt',
-   'DATA'),
-  ('altgraph-0.17.2.dist-info\\METADATA',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\METADATA',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\entry_points.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\entry_points.txt',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\METADATA',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\METADATA',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\REQUESTED',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\REQUESTED',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\INSTALLER',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\INSTALLER',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\RECORD',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\RECORD',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\entry_points.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\entry_points.txt',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\METADATA',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\METADATA',
-   'DATA'),
-  ('altgraph-0.17.2.dist-info\\zip-safe',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\zip-safe',
-   'DATA'),
-  ('altgraph-0.17.2.dist-info\\WHEEL',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\WHEEL',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\REQUESTED',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\REQUESTED',
-   'DATA'),
-  ('wheel-0.37.1.dist-info\\LICENSE.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\WHEEL',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\WHEEL',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\COPYING.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\COPYING.txt',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\INSTALLER',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('setuptools-58.1.0.dist-info\\RECORD',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\setuptools-58.1.0.dist-info\\RECORD',
-   'DATA'),
-  ('wheel-0.37.1.dist-info\\METADATA',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\METADATA',
-   'DATA'),
-  ('pyinstaller-5.3.dist-info\\top_level.txt',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\pyinstaller-5.3.dist-info\\top_level.txt',
-   'DATA'),
-  ('altgraph-0.17.2.dist-info\\INSTALLER',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\altgraph-0.17.2.dist-info\\INSTALLER',
-   'DATA'),
-  ('wheel-0.37.1.dist-info\\INSTALLER',
-   'i:\\program '
-   'files\\python39\\lib\\site-packages\\wheel-0.37.1.dist-info\\INSTALLER',
    'DATA')],
  [])
