@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24603b6a-706d-4964-a9c4-89b59c42669d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/_data_/icon/refresh.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CheAnh.py" beforeDir="false" afterPath="$PROJECT_DIR$/CheAnh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_eye.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_eye_tree_eyeglasses.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_alt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_alt2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_alt_tree.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_frontalface_default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/DataSet/haarcascade_frontalface_default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_fullbody.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_lefteye_2splits.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_lowerbody.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_profileface.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_righteye_2splits.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_smile.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataSet/haarcascade_upperbody.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.ico" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/app.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_data_/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/main.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/Analysis-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/EXE-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/PKG-00.toc" afterDir="false" />
@@ -31,17 +17,9 @@
       <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/base_library.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/warn-Xu Ly Anh - 19TinTT Duyvo-VinhKhang.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/warn-Xu Ly Anh - 19TinTT Duyvo-VinhKhang.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/xref-Xu Ly Anh - 19TinTT Duyvo-VinhKhang.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/Xu Ly Anh - 19TinTT Duyvo-VinhKhang/xref-Xu Ly Anh - 19TinTT Duyvo-VinhKhang.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-circled-thin-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-circled-thin-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-documents-folder-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-documents-folder-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-left-50.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-left-50.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-next-page-50.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-next-page-50.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-npc-face-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-npc-face-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-remove-64.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-remove-64.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-save-as-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-save-as-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icons8-surface-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/icons8-surface-40.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/vietnam.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/icon/vietnam.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Xu Ly Anh - 19TinTT Duyvo-VinhKhang.exe.notanexecutable" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/main.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.spec" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +49,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/GIT/Python/Xy Ly Anh/_data_/icon",
+    "last_opened_file_path": "D:/GIT/Python/Xy Ly Anh",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }

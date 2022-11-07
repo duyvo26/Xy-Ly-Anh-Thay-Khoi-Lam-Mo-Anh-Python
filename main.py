@@ -6,13 +6,13 @@ from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 from PyQt5 import QtCore
-
 import CheAnh
 
 ui_main, _ = loadUiType('_data_\\main.ui')
 
 _LinkIMG_, linkcache, folderOut, point_XY, ViTriXY, \
-LinkSaveIMG, XYTam, IMGXuLy, countIMG, MaxIMG = "", "", "", [], [], [], [], "", 0, 0
+LinkSaveIMG, XYTam, IMGXuLy,\
+countIMG, MaxIMG, ListFileRun, selectFile = "", "", "", [], [], [], [], "", 0, 0, [], {}
 
 
 class ScrollMessageBox(QMessageBox):
@@ -58,7 +58,8 @@ class MainApp(QMainWindow, ui_main):
         self.point_y.textChanged.connect(self.DemoIMG)
         self.size_che.textChanged.connect(self.DemoIMG)
         self.thanh_dieuchinh.valueChanged.connect(self.DemoIMG)
-        self.path_folder.textChanged.connect(self.DemoIMG)
+
+        self.path_folder.textChanged.connect(self.AddItemToListMain)
         self.path_folder_out.textChanged.connect(self.SaveOutFolder)
         self.btn_in.clicked.connect(self.SelectIn)
         self.btn_in.setIcon(QIcon("_data_\\icon\\icons8-documents-folder-48.png"))
@@ -93,14 +94,24 @@ class MainApp(QMainWindow, ui_main):
         self.btnReload.setToolTip("Reload dữ liệu")
 
 
+        self.DelteListFileBut.clicked.connect(self.DelteListFile)
+        self.DelteListFileBut.setIcon(QIcon("_data_\\icon\\remove-file.png"))
+        self.DelteListFileBut.setIconSize(QtCore.QSize(45, 45))
+        self.DelteListFileBut.setToolTip("Xoá ảnh")
+
+        self.ListFile.itemClicked.connect(self.Clicked_Selec)
+
+
+
+
+
     def nextIMG(self):
         global countIMG, MaxIMG
         if countIMG + 1 >= MaxIMG:
             QMessageBox.information(self, "Thông báo", "Không có ảnh ở phía trước")
             return False
         countIMG += 1
-        self.point_x.setText(str(1))
-        self.point_x.setText(str(0))
+        self.DemoIMG()
 
     def backIMG(self):
         global countIMG, MaxIMG
@@ -108,28 +119,31 @@ class MainApp(QMainWindow, ui_main):
             QMessageBox.information(self, "Thông báo", "Không có ảnh ở phía sau")
             return False
         countIMG -= 1
-        self.point_x.setText(str(1))
-        self.point_x.setText(str(0))
+        self.DemoIMG()
 
     def ReloadData(self):
-        self.point_x.setText(str(1))
-        self.point_x.setText(str(0))
-        # self.Slider_X.setValue(int(0))
-        self.point_y.setText(str(0))
-        self.size_che.setText(str(0))
+        if ListFileRun != []:
+            self.point_x.setText(str(0))
+            self.point_y.setText(str(0))
+            self.size_che.setText(str(0))
+        else:
+            QMessageBox.information(self, "Thông báo", "Không có gì để reload")
 
     def SetSaveIMG(self):
         global _LinkIMG_, linkcache, ViTriXY, LinkSaveIMG, XYTam
         if len(XYTam) > 0:
             ViTriXY.append(XYTam[len(XYTam) - 1])
             QMessageBox.information(self, "Thông báo", "Lưu thành công vị trí thứ " + str(len(ViTriXY)))
-
+        else:
+            QMessageBox.information(self, "Thông báo", "Lỗi lưu vị trí hoặc không tồn tại vị trí")
     def SetDeleIMG(self):
         global ViTriXY
         if len(ViTriXY) > 0:
             print("Xoa vi tri")
             ViTriXY.pop(len(ViTriXY) - 1)
             QMessageBox.information(self, "Thông báo", "Đã xoá vị trí gần nhất")
+        else:
+            QMessageBox.information(self, "Thông báo", "Lỗi xoá vị trí hoặc không tồn tại vị trí")
 
     def BatDauLoad(self):
         self.setFixedSize(1141, 10)
@@ -159,15 +173,6 @@ class MainApp(QMainWindow, ui_main):
 
         folderOut = str(self.path_folder_out.text())
 
-    # def DieuCHinhXY(self):
-    #     CuongDo_X = self.Slider_X.value()
-    #     CuongDo_Y = self.Slider_Y.value()
-    #     CuongDo_R = self.Slider_R.value()
-    #     self.point_x.setText(str(CuongDo_X))
-    #     self.Slider_X.setValue(int(CuongDo_X))
-    #     self.point_y.setText(str(CuongDo_Y))
-    #     self.size_che.setText(str(CuongDo_R))
-
     def convert_cv_qt(self, cv_img, err = False):
         try:
             import cv2
@@ -181,23 +186,34 @@ class MainApp(QMainWindow, ui_main):
                 QMessageBox.information(self, "Thông báo", "Vi trí che không phù hợp với ảnh")
             return "ERR"
 
+    def AddItemToListMain(self):
+        global ListFileRun
+        path_Folder = str(self.path_folder.text())
+        FileIMG = CheAnh.GetIMGinFloderDEmo(path_Folder)
+        ListFileRun.clear()
+        for i in FileIMG:
+            ListFileRun.append(i)
+        print("Run demo")
+        self.DemoIMG()
 
-    def DemoIMG(self):
+
+    def DemoIMG(self, Click = False):
         try:
             import cv2
-            global _LinkIMG_, linkcache, IMGXuLy, ViTriXY, countIMG, MaxIMG
-
-            path_Folder = str(self.path_folder.text())
-            FileIMG = CheAnh.GetIMGinFloderDEmo(path_Folder, countIMG)
-            MaxIMG = len(CheAnh.GetIMGinFloderOut(path_Folder))
-
+            global _LinkIMG_, linkcache, IMGXuLy, ViTriXY, countIMG, MaxIMG, ListFileRun
+            print("Lits file run", ListFileRun)
+            if Click == False:
+                self.ListFile.clear()
+                self.ListFile.addItems(ListFileRun)
+            FileIMG = ListFileRun[countIMG]
+            MaxIMG = len(ListFileRun)
             CuongDo = self.thanh_dieuchinh.value()
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
-            if X == 0 and Y == 0 and R == 0 and path_Folder != "":
+            if X == 0 and Y == 0 and R == 0 and ListFileRun != []:
                 X, Y, R = 10, 10, 10
-            if X > 0 and Y > 0 and R > 0 and path_Folder != "":
+            if X > 0 and Y > 0 and R > 0 and ListFileRun != []:
                 try:
                     # VUONG
                     IMGXuLy = CheAnh.CheAnh(X, Y, R, FileIMG, 1, CuongDo)
@@ -216,13 +232,45 @@ class MainApp(QMainWindow, ui_main):
 
                 except Exception as ex:
                     print("demo load", ex)
-                    self.point_x.setText(str(0))
-                    self.point_y.setText(str(0))
-                    self.size_che.setText(str(0))
-
-
+                    # self.point_x.setText(str(0))
+                    # self.point_y.setText(str(0))
+                    # self.size_che.setText(str(0))
         except Exception as ex:
+            try:
+                self.ShowImg_Vuong("_data_\\er.png")
+                self.ShowImg_Face("_data_\\er.png")
+            except Exception as ex:
+                print(ex)
             print(ex)
+    def Clicked_Selec(self, item):
+        global selectFile, countIMG, ListFileRun
+        selectFile = countIMG = self.ListFile.row(item)
+        print("Click ", countIMG)
+        self.ListFile.clear()
+        countSelec = 0
+        from PyQt5.QtCore import Qt
+        for a in ListFileRun:
+            if countSelec == countIMG:
+                print("set bac", a)
+                item = QListWidgetItem(str(a))
+                item.setForeground(Qt.red)
+                self.ListFile.addItem(item)
+            else:
+                print("Bo qua")
+                self.ListFile.addItem(a)
+            countSelec += 1
+        self.DemoIMG(True)
+
+
+    def DelteListFile(self):
+        try:
+            global selectFile, ListFileRun
+            self.ListFile.takeItem(selectFile)
+            ListFileRun.pop(selectFile)
+            self.DemoIMG()
+        except:
+            QMessageBox.information(self, "Thông báo", "Lỗi xoá danh sách ảnh")
+            print("Loi xoa slec")
 
     def ShowImg_Vuong(self, IMG):
         label = self.findChild(QLabel, "labviewVuong")
@@ -245,7 +293,7 @@ class MainApp(QMainWindow, ui_main):
         x = event.pos().x()
         y = event.pos().y()
         label = self.findChild(QLabel, "labviewVuong")
-        size_W, size_H = 501, 509
+        size_W, size_H = 442, 499
         SizeH_img, SizeW_img, h = IMGXuLy.shape
         ptW = int(((SizeW_img - size_W) / size_W) * 100)
         ptH = int(((SizeH_img - size_H) / size_H) * 100)
@@ -282,12 +330,12 @@ class MainApp(QMainWindow, ui_main):
 
             # bat dau  ###
 
-            path_Folder = str(self.path_folder.text())
-            if len(path_Folder) < 2:
-                QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
+            if len(ListFileRun) <= 0:
+                QMessageBox.information(self, "Thông báo", "Không có file để thực thi")
                 return False
             self.BatDauLoad()
-            FileIMG = CheAnh.GetIMGinFloderOut(path_Folder)
+
+            FileIMG = ListFileRun
             from datetime import datetime
             now = datetime.now()
             if folderOut != "" and len(folderOut) > 3:
@@ -301,9 +349,9 @@ class MainApp(QMainWindow, ui_main):
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
-            if X == 0 and Y == 0 and R == 0 and path_Folder != "":
+            if X == 0 and Y == 0 and R == 0 and ListFileRun != []:
                 X, Y, R = 10, 10, 10
-            if X > 0 and Y > 0 and R > 0 and path_Folder != "":
+            if X > 0 and Y > 0 and R > 0 and ListFileRun != []:
                 LogERR = []
                 for a in FileIMG:
                     FileIMG = a
@@ -344,12 +392,12 @@ class MainApp(QMainWindow, ui_main):
 
             # bat dau  ###
 
-            path_Folder = str(self.path_folder.text())
-            if len(path_Folder) < 2:
-                QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
+            if len(ListFileRun) <= 0:
+                QMessageBox.information(self, "Thông báo", "Không có file để thực thi")
                 return False
             self.BatDauLoad()
-            FileIMG = CheAnh.GetIMGinFloderOut(path_Folder)
+
+            FileIMG = ListFileRun
             from datetime import datetime
             now = datetime.now()
             if folderOut != "" and len(folderOut) > 3:
@@ -363,9 +411,9 @@ class MainApp(QMainWindow, ui_main):
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
-            if X == 0 and Y == 0 and R == 0 and path_Folder != "":
+            if X == 0 and Y == 0 and R == 0 and ListFileRun != []:
                 X, Y, R = 10, 10, 10
-            if X > 0 and Y > 0 and R > 0 and path_Folder != "":
+            if X > 0 and Y > 0 and R > 0 and ListFileRun != []:
                 LogERR = []
                 for a in FileIMG:
                     FileIMG = a
@@ -413,13 +461,12 @@ class MainApp(QMainWindow, ui_main):
 
             # bat dau  ###
 
-            path_Folder = str(self.path_folder.text())
-            if len(path_Folder) < 2:
-                QMessageBox.information(self, "Thông báo", "Vui lòng nhập đủ thông tin")
+            if len(ListFileRun) <= 0:
+                QMessageBox.information(self, "Thông báo", "Không có file để thực thi")
                 return False
             self.BatDauLoad()
 
-            FileIMG = CheAnh.GetIMGinFloderOut(path_Folder)
+            FileIMG = ListFileRun
             from datetime import datetime
             now = datetime.now()
             if folderOut != "" and len(folderOut) > 3:
@@ -433,9 +480,9 @@ class MainApp(QMainWindow, ui_main):
             X = int(self.point_x.text())
             Y = int(self.point_y.text())
             R = int(self.size_che.text())
-            if X == 0 and Y == 0 and R == 0 and path_Folder != "":
+            if X == 0 and Y == 0 and R == 0 and ListFileRun != []:
                 X, Y, R = 10, 10, 10
-            if X > 0 and Y > 0 and R > 0 and path_Folder != "":
+            if X > 0 and Y > 0 and R > 0 and ListFileRun != []:
                 LogERR = []
                 for a in FileIMG:
                     FileIMG = a

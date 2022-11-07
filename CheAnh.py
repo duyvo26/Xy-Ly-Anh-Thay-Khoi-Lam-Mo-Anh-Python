@@ -80,8 +80,7 @@ def GetIMGinFloderDEmo(folder, point=0):
         for f in file:
             if f.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
                 point_arr.append(str(root + "\\" + f))
-
-    return point_arr[point]
+    return point_arr
 
 
 def GetIMGinFloderOut(folder):
