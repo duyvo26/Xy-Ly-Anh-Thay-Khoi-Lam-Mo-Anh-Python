@@ -127,7 +127,7 @@ class MainApp(QMainWindow, ui_main):
             self.point_y.setText(str(0))
             self.size_che.setText(str(0))
         else:
-            QMessageBox.information(self, "Thông báo", "Không có gì để reload")
+            print("List file rong")
 
     def SetSaveIMG(self):
         global _LinkIMG_, linkcache, ViTriXY, LinkSaveIMG, XYTam
@@ -188,13 +188,15 @@ class MainApp(QMainWindow, ui_main):
 
     def AddItemToListMain(self):
         global ListFileRun
+        self.BatDauLoad()
         path_Folder = str(self.path_folder.text())
         FileIMG = CheAnh.GetIMGinFloderDEmo(path_Folder)
         ListFileRun.clear()
         for i in FileIMG:
-            ListFileRun.append(i)
+            ListFileRun.append([i, os.path.split(i)[-1]])
         print("Run demo")
         self.DemoIMG()
+        self.DungLoad()
 
 
     def DemoIMG(self, Click = False):
@@ -204,8 +206,10 @@ class MainApp(QMainWindow, ui_main):
             print("Lits file run", ListFileRun)
             if Click == False:
                 self.ListFile.clear()
-                self.ListFile.addItems(ListFileRun)
-            FileIMG = ListFileRun[countIMG]
+                for i in ListFileRun:
+                    self.ListFile.addItem(i[1])
+
+            FileIMG = ListFileRun[countIMG][0]
             MaxIMG = len(ListFileRun)
             CuongDo = self.thanh_dieuchinh.value()
             X = int(self.point_x.text())
@@ -250,6 +254,7 @@ class MainApp(QMainWindow, ui_main):
         countSelec = 0
         from PyQt5.QtCore import Qt
         for a in ListFileRun:
+            a = a[1]
             if countSelec == countIMG:
                 print("set bac", a)
                 item = QListWidgetItem(str(a))
@@ -334,8 +339,10 @@ class MainApp(QMainWindow, ui_main):
                 QMessageBox.information(self, "Thông báo", "Không có file để thực thi")
                 return False
             self.BatDauLoad()
+            FileIMG = []
+            for i in ListFileRun:
+                FileIMG.append(i[0])
 
-            FileIMG = ListFileRun
             from datetime import datetime
             now = datetime.now()
             if folderOut != "" and len(folderOut) > 3:
@@ -397,7 +404,10 @@ class MainApp(QMainWindow, ui_main):
                 return False
             self.BatDauLoad()
 
-            FileIMG = ListFileRun
+            FileIMG = []
+            for i in ListFileRun:
+                FileIMG.append(i[0])
+
             from datetime import datetime
             now = datetime.now()
             if folderOut != "" and len(folderOut) > 3:
@@ -466,7 +476,9 @@ class MainApp(QMainWindow, ui_main):
                 return False
             self.BatDauLoad()
 
-            FileIMG = ListFileRun
+            FileIMG = []
+            for i in ListFileRun:
+                FileIMG.append(i[0])
             from datetime import datetime
             now = datetime.now()
             if folderOut != "" and len(folderOut) > 3:
