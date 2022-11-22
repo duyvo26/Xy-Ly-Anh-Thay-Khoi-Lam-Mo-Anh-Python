@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24603b6a-706d-4964-a9c4-89b59c42669d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/13cadfa.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/13cadfa.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/Cuoc-Hen-Song-Con-phan-1-Date-A-Live-ss1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/Cuoc-Hen-Song-Con-phan-1-Date-A-Live-ss1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/Untitled.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/Untitled.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/anh-hot-girl.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/anh-hot-girl.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/chau-tinh-tri-va-dan-dien-vien-quan-xam-loc-coc-1994-1625539701-1200x627.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/chau-tinh-tri-va-dan-dien-vien-quan-xam-loc-coc-1994-1625539701-1200x627.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/datealiveiv_keyvisual-1-e1646646022414.png" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/datealiveiv_keyvisual-1-e1646646022414.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/img_out_demo/maxresdefault (1).jpg" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/img_out_demo/maxresdefault (1).jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data_/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/_data_/main.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="24603b6a-706d-4964-a9c4-89b59c42669d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,15 +29,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GIT/Python/Xy Ly Anh&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/GIT/Python/Auto-Doc-Truyen",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\GIT\Python\Xy Ly Anh\_data_\icon" />

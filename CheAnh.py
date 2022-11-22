@@ -78,7 +78,22 @@ def GetIMGinFloderDEmo(folder, point=0):
     point_arr = []
     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
         for f in file:
-            if f.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+            f = f.lower()
+            if f.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif', '.heic')):
+                if '.heic' in f.lower():
+                    try:
+                        from wand.image import Image
+                        SourceFile = root + "/" + f
+                        TargetFile = root + "/" + f.replace(".heic", ".jpg")
+                        img = Image(filename=SourceFile)
+                        img.format = 'jpg'
+                        print(TargetFile)
+                        img.save(filename=TargetFile)
+                        img.close()
+                        f = os.path.split(TargetFile)[-1]
+                    except Exception as rr:
+                        print(rr)
+
                 point_arr.append(str(root + "\\" + f))
     return point_arr
 
