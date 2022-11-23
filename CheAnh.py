@@ -98,14 +98,14 @@ def GetIMGinFloderDEmo(folder, point=0):
     return point_arr
 
 
-def GetIMGinFloderOut(folder):
-    point_arr = []
-    for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
-        for f in file:
-            if ".jpg" in f or ".png" in f or ".webp" in f:
-                point_arr.append(str(root + "\\" + f))
-    return point_arr
-
+# def GetIMGinFloderOut(folder):
+#     point_arr = []
+#     for (root, dirs, file) in os.walk(folder):  # lap lay danh sach
+#         for f in file:
+#             if ".jpg" in f or ".png" in f or ".webp" in f:
+#                 point_arr.append(str(root + "\\" + f))
+#     return point_arr
+#
 
 def path():
     return pathlib.Path().resolve()
